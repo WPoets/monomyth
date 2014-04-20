@@ -16,7 +16,7 @@
 require( 'clean-up.php' ); 
 require( 'nice-search.php' ); 
 require( 'relative-urls.php' ); 
-require( 'admin.php' ); 
+require( 'admin-cleanup.php' ); 
 
 if ( class_exists( 'ReduxFramework' ) ) {
 	require( 'theme-options.php' );
