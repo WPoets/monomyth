@@ -6,36 +6,19 @@
 */
 
 
+//enqueue required basic scripts and styles -- bootstrap css, js and app and js
+
 /**
  * Initialize the CMF metabox class.  help is currently at https://github.com/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress
  */
-add_action( 'init', 'monomyth_initialize_cmb_meta_boxes', 9999 );
-function monomyth_initialize_cmb_meta_boxes() {
-	if ( ! class_exists( 'cmb_Meta_Box' ) )
-		require_once 'cmf/init.php';
+
+if ( class_exists( 'ReduxFramework' ) ) {
+	require_once( 'theme-options.php' );
 }
-
-/**
- * Initialize the Redux Framework for options.  Help is currently at http://docs.reduxframework.com/  
- */
-
-if ( !class_exists( 'ReduxFramework' ) && file_exists( dirname( __FILE__ ) . '/ReduxFramework/ReduxCore/framework.php' ) ) {
-    require_once( dirname( __FILE__ ) . '/ReduxFramework/ReduxCore/framework.php' );
-}
-
-require_once( 'theme-options.php' );
-
-
-require_once( 'hm-rewrites.php' ); // to ensure and give easy ability to add new rewrite rules
-
-
-// Automatically compiles any .less file to css.
-require_once( 'wp-less/wp-less.php' );
-
-//enqueue required basic scripts and styles -- bootstrap css, js and app and js
 
 function monomyth_scripts() {
   wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/less/bootstrap.less', false);
+  wp_enqueue_style('fontawesome', get_template_directory_uri() . '/assets/less/font-awesome/font-awesome.less', false);
   wp_enqueue_style('monomyth_app', get_template_directory_uri() . '/assets/app.less', false);
 
   // jQuery is loaded using the same method from HTML5 Boilerplate:
