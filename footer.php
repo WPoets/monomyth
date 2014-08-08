@@ -1,13 +1,5 @@
-</div> <!--#content_area--->
-<div id='footer_area'>
-<footer class="content-info" role="contentinfo">
-  <div class="container">
-    <?php dynamic_sidebar('sidebar-footer'); ?>
-    <p>&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?></p>
-  </div>
-</footer>
-<?php wp_footer(); ?>
-</div> <!--#footer_area --->
-
+<?php
+echo do_shortcode('[aw_block slug="theme-footer"]');
+ wp_footer(); ?>
 </body>
 </html>
