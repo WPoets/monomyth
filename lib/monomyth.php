@@ -22,8 +22,34 @@ if ( class_exists( 'ReduxFramework' ) ) {
 	require( 'theme-options.php' );
 }
 
+add_theme_support( 'post-thumbnails' );
+// Register wp_nav_menu() menus (http://codex.wordpress.org/Function_Reference/register_nav_menus)
+register_nav_menus(array(
+'primary_navigation' => __('Primary Navigation', 'monomyth'),
+));
 
+function monomyth_widgets_init() {
+  // Sidebars
+  register_sidebar(array(
+    'name'          => __('Primary', 'monomyth'),
+    'id'            => 'sidebar-primary',
+    'before_widget' => '<section class="widget %1$s %2$s">',
+    'after_widget'  => '</section>',
+    'before_title'  => '<h3>',
+    'after_title'   => '</h3>',
+  ));
 
+  register_sidebar(array(
+    'name'          => __('Footer', 'monomyth'),
+    'id'            => 'sidebar-footer',
+    'before_widget' => '<section class="widget %1$s %2$s">',
+    'after_widget'  => '</section>',
+    'before_title'  => '<h3>',
+    'after_title'   => '</h3>',
+  ));
+
+}
+add_action('widgets_init', 'monomyth_widgets_init');
 
 function monomyth_scripts() {
   global $wp_styles;
@@ -75,3 +101,9 @@ function add_filters($tags, $function) {
     add_filter($tag, $function);
   }
 }
+
+//--- theme activation ---
+function monomyth_theme_activation_action(){
+
+}
+add_action('admin_init','monomyth_theme_activation_action');

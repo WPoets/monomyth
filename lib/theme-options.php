@@ -1,7 +1,7 @@
 <?php
 
 /**
-  Theme Options For MonoMyth, please feel free to edit to add more options as per you requirement.
+  ReduxFramework Sample Config File
   For full documentation, please visit: https://docs.reduxframework.com
  * */
 
@@ -73,10 +73,6 @@ if (!class_exists('Redux_Framework_sample_config')) {
 
          * */
         function compiler_action($options, $css) {
-            //echo '<h1>The compiler hook has run!';
-            //print_r($options); //Option values
-            //print_r($css); // Compiler selector CSS values  compiler => array( CSS SELECTORS )
-
             /*
               // Demo of how to use the dynamic CSS and write your own static CSS file
               $filename = dirname(__FILE__) . '/style' . '.css';
@@ -274,7 +270,7 @@ if (!class_exists('Redux_Framework_sample_config')) {
                         'id'        => 'opt-media',
                         'type'      => 'media',
                         'url'       => true,
-                        'title'     => __('Media w/ URL', 'redux-framework-demo'),
+                        'title'     => __('Upload site logo', 'redux-framework-demo'),
                         'compiler'  => 'true',
                         //'mode'      => false, // Can be set to false to allow any media type, or can also be set to any mime type.
                         'desc'      => __('Basic media uploader with disabled URL input field.', 'redux-framework-demo'),
@@ -381,6 +377,27 @@ if (!class_exists('Redux_Framework_sample_config')) {
                         'type'      => 'switch',
                         'title'     => __('Switch On', 'redux-framework-demo'),
                         'subtitle'  => __('Look, it\'s on!', 'redux-framework-demo'),
+                        'default'   => true,
+                    ),
+                    array(
+                        'id'        => 'single-item',
+                        'type'      => 'switch',
+                        'title'     => __('Single Item', 'redux-framework-demo'),
+                        'subtitle'  => __('Allow single item on carousel', 'redux-framework-demo'),
+                        'default'   => true,
+                    ),
+                    array(
+                        'id'        => 'autoplay',
+                        'type'      => 'switch',
+                        'title'     => __('Autoplay', 'redux-framework-demo'),
+                        'subtitle'  => __('Autoplay Carousel', 'redux-framework-demo'),
+                        'default'   => true,
+                    ),
+                    array(
+                        'id'        => 'hover-stop',
+                        'type'      => 'switch',
+                        'title'     => __('Stop on hover', 'redux-framework-demo'),
+                        'subtitle'  => __('Stop Carousel autoplay on mouse hover', 'redux-framework-demo'),
                         'default'   => true,
                     ),
                     array(
@@ -1487,13 +1504,13 @@ if (!class_exists('Redux_Framework_sample_config')) {
 
             $this->args = array(
                 // TYPICAL -> Change these values as you need/desire
-                'opt_name'          => 'redux_demo',            // This is where your data is stored in the database and also becomes your global variable name.
+                'opt_name'          => 'monomyth',            // This is where your data is stored in the database and also becomes your global variable name.
                 'display_name'      => $theme->get('Name'),     // Name that appears at the top of your panel
                 'display_version'   => $theme->get('Version'),  // Version that appears at the top of your panel
                 'menu_type'         => 'menu',                  //Specify if the admin menu should appear or not. Options: menu or submenu (Under appearance only)
                 'allow_sub_menu'    => true,                    // Show the sections below the admin menu item or not
-                'menu_title'        => __('Sample Options', 'redux-framework-demo'),
-                'page_title'        => __('Sample Options', 'redux-framework-demo'),
+                'menu_title'        => __('Monomyth Settings', 'redux-framework-demo'),
+                'page_title'        => __('Monomyth Theme Settings', 'redux-framework-demo'),
                 
                 // You will need to generate a Google API key to use this feature.
                 // Please visit: https://developers.google.com/fonts/docs/developer_api#Auth
@@ -1561,24 +1578,19 @@ if (!class_exists('Redux_Framework_sample_config')) {
 
 
             // SOCIAL ICONS -> Setup custom links in the footer for quick links in your panel footer icons.
+           
             $this->args['share_icons'][] = array(
-                'url'   => 'https://github.com/ReduxFramework/ReduxFramework',
-                'title' => 'Visit us on GitHub',
-                'icon'  => 'el-icon-github'
-                //'img'   => '', // You can use icon OR img. IMG needs to be a full URL.
-            );
-            $this->args['share_icons'][] = array(
-                'url'   => 'https://www.facebook.com/pages/Redux-Framework/243141545850368',
+                'url'   => 'https://www.facebook.com/wpoets',
                 'title' => 'Like us on Facebook',
                 'icon'  => 'el-icon-facebook'
             );
             $this->args['share_icons'][] = array(
-                'url'   => 'http://twitter.com/reduxframework',
+                'url'   => 'http://twitter.com/wpoets',
                 'title' => 'Follow us on Twitter',
                 'icon'  => 'el-icon-twitter'
             );
             $this->args['share_icons'][] = array(
-                'url'   => 'http://www.linkedin.com/company/redux-framework',
+                'url'   => 'http://www.linkedin.com/company/wpoets-technology-llp',
                 'title' => 'Find us on LinkedIn',
                 'icon'  => 'el-icon-linkedin'
             );
@@ -1596,7 +1608,7 @@ if (!class_exists('Redux_Framework_sample_config')) {
             }
 
             // Add content after the form.
-            $this->args['footer_text'] = __('<p>This text is displayed below the options panel. It isn\'t required, but more info is always better! The footer_text field accepts all HTML.</p>', 'redux-framework-demo');
+            $this->args['footer_text'] = __('<p>Need help? Join our Sonnet Club membership.</p>', 'redux-framework-demo');
         }
 
     }
