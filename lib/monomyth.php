@@ -8,10 +8,6 @@
 
 //enqueue required basic scripts and styles -- bootstrap css, js and app and js
 
-/**
- * Initialize the CMF metabox class.  help is currently at https://github.com/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress
- */
-
 // clean ups taken from roots and bones theme framework
 require( 'clean-up.php' ); 
 require( 'nice-search.php' ); 
@@ -55,7 +51,7 @@ function monomyth_scripts() {
   global $wp_styles;
   global $wp_scripts;
   
-  wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/less/bootstrap.less', false);
+//  wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/less/bootstrap.less', false);
   wp_enqueue_style('fontawesome', get_template_directory_uri() . '/assets/less/font-awesome/font-awesome.less', false);
   wp_enqueue_style('monomyth_app', get_template_directory_uri() . '/assets/app.less', false);
   wp_enqueue_style('monomyth_ie', get_template_directory_uri() . '/assets/ie.css', false);
@@ -109,9 +105,19 @@ function monomyth_theme_activation_action(){
 add_action('admin_init','monomyth_theme_activation_action');
 
 
-add_filter( 'post_thumbnail_html', 'monomyth_remove_thumbnail_dimensions', 10, 3 );
-
 function monomyth_remove_thumbnail_dimensions( $html, $post_id, $post_image_id ) {
     $html = preg_replace( '/(width|height)=\"\d*\"\s/', "", $html );
     return $html;
 }
+add_filter( 'post_thumbnail_html', 'monomyth_remove_thumbnail_dimensions', 10, 3 );
+
+function monomyth_less_path(){
+	return get_template_directory().'/assets/css-cache';
+}
+add_filter('wp_less_cache_path','monomyth_less_path');
+
+
+function monomyth_less_url(){
+	return get_template_directory_uri().'/assets/css-cache';
+}
+add_filter('wp_less_cache_url','monomyth_less_url');
