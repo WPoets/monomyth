@@ -35,4 +35,4 @@
 <div id="background_ovelay"></div>
 <?php
 
-echo do_shortcode('[aw_block slug="theme-header"]');
+echo do_shortcode('[aw2_block slug="theme-header"]');

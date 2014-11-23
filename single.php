@@ -11,12 +11,12 @@ get_header(); ?>
 			$post_type=get_post_type( $post );
 			global $awesome_params;
 			$awesome_params['default_post']=$post;
-			if(awesome_library::get_post_from_slug('theme-' . $post_type . '-single','aw_block',$ignore)){
-				echo do_shortcode('[aw_block slug="theme-' . $post_type . '-single"]'); 
+			if(awesome_library::get_post_from_slug('theme-' . $post_type . '-single','aw2_block',$ignore)){
+				echo do_shortcode('[aw2_block slug="theme-' . $post_type . '-single"]'); 
 				
 			}	
 			else{
-				echo do_shortcode('[aw_block slug="theme-single"]'); 
+				echo do_shortcode('[aw2_block slug="theme-single"]'); 
 				
 			}
 
