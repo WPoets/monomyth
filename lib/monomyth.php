@@ -14,10 +14,6 @@ require( 'nice-search.php' );
 require( 'relative-urls.php' ); 
 require( 'admin-cleanup.php' ); 
 
-if ( class_exists( 'ReduxFramework' ) ) {
-	require( 'theme-options.php' );
-}
-
 add_theme_support( 'post-thumbnails' );
 // Register wp_nav_menu() menus (http://codex.wordpress.org/Function_Reference/register_nav_menus)
 register_nav_menus(array(
