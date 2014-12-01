@@ -9,10 +9,10 @@ get_header(); ?>
 		<main class="main col-sm-12 col-xs-12" role="main">
 			<?php 
 			$tax = $wp_query->get_queried_object();
-			global $awesome_params;
-			$awesome_params['default_taxonomy']=$tax->taxonomy;
-			$awesome_params['default_term_slug']=$tax->slug;
- 			if(awesome_library::get_post_from_slug('theme-' . $tax->taxonomy . '-archive','aw2_block',$ignore))
+			
+			awesome2_library::setparam('default_taxonomy',$tax->taxonomy);
+			awesome2_library::setparam('default_term_slug',$tax->slug);
+ 			if(awesome2_library::get_post_from_slug('theme-' . $tax->taxonomy . '-archive','aw_block',$ignore))
 				echo do_shortcode('[aw2_block slug="theme-' . $tax->taxonomy . '-archive"]'); 
 			else
 				echo do_shortcode('[aw2_block slug="theme-archive"]');

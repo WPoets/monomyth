@@ -9,9 +9,9 @@ get_header(); ?>
 		<main class="main col-sm-12 col-xs-12" role="main">
 			<?php while ( have_posts() ) : the_post();
 			$post_type=get_post_type( $post );
-			global $awesome_params;
-			$awesome_params['default_post']=$post;
-			if(awesome_library::get_post_from_slug('theme-' . $post_type . '-single','aw2_block',$ignore)){
+	
+			awesome2_library::setparam('default_item')=$post;
+			if(awesome2_library::get_post_from_slug('theme-' . $post_type . '-single','aw_block',$ignore)){
 				echo do_shortcode('[aw2_block slug="theme-' . $post_type . '-single"]'); 
 				
 			}	
