@@ -12,6 +12,8 @@ get_header(); ?>
 			
 			awesome2_library::setparam('default_taxonomy',$tax->taxonomy);
 			awesome2_library::setparam('default_term_slug',$tax->slug);
+			awesome2_library::setparam('default_collection',$wp_query->posts);
+
  			if(awesome2_library::get_post_from_slug('theme-' . $tax->taxonomy . '-archive','aw_block',$ignore))
 				echo do_shortcode('[aw2_block slug="theme-' . $tax->taxonomy . '-archive"]'); 
 			else
