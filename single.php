@@ -10,7 +10,7 @@ get_header(); ?>
 			<?php while ( have_posts() ) : the_post();
 			$post_type=get_post_type( $post );
 	
-			awesome2_library::setparam('default_item')=$post;
+			awesome2_library::setparam('default_item',$post);
 			if(awesome2_library::get_post_from_slug('theme-' . $post_type . '-single','aw_block',$ignore)){
 				echo do_shortcode('[aw2_block slug="theme-' . $post_type . '-single"]'); 
 				
