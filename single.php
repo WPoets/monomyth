@@ -13,18 +13,14 @@ get_header(); ?>
 			awesome2_library::setparam('default_item',$post);
 			if(awesome2_library::get_post_from_slug('theme-' . $post_type . '-single','aw_block',$ignore)){
 				echo do_shortcode('[aw2_block slug="theme-' . $post_type . '-single"]'); 
-				
 			}	
 			else{
 				echo do_shortcode('[aw2_block slug="theme-single"]'); 
-				
 			}
-
-			
-				// If comments are open or we have at least one comment, load up the comment template
-				if ( comments_open() || '0' != get_comments_number() ) :
-					comments_template();
-				endif;
+			// If comments are open or we have at least one comment, load up the comment template
+			if ( comments_open() || '0' != get_comments_number() ) :
+				comments_template();
+			endif;
 			?>
 
 			<?php endwhile; // end of the loop. ?>
