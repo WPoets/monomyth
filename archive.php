@@ -6,7 +6,7 @@
 get_header(); ?>
 <div class="container-fluid">
 	<div class="content row">
-		<main class="main col-sm-12 col-xs-12 nopadding" role="main">
+		<main class="main col-sm-12 col-xs-12" role="main">
 			<?php 
 			$shortcode ='[aw_block slug="theme-archive"]';
 			if(is_post_type_archive( ))
@@ -32,10 +32,10 @@ get_header(); ?>
 					$shortcode='[aw_block slug="theme-category-' . $cat->slug . '-archive"]'; 
 			}
 			else if( is_tag()){
-				
+				if(awesome_library::get_post_from_slug('theme-tag-' . $cat->slug . '-archive','aw_block',$ignore))
+					$shortcode='[aw_block slug="theme-tag-' . $cat->slug . '-archive"]'; 
 			}
 			
-			echo $shortcode;
 			echo do_shortcode($shortcode);
 			/* global $awesome_params;
 			$awesome_params['default_taxonomy']=$tax->taxonomy;
