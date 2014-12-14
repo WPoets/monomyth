@@ -5,7 +5,6 @@
 *
 */
 
-
 //enqueue required basic scripts and styles -- bootstrap css, js and app and js
 
 // clean ups taken from roots and bones theme framework
@@ -16,6 +15,16 @@ require( 'admin-cleanup.php' );
 
 
 add_theme_support( 'post-thumbnails' );
+add_theme_support( 'jquery-cdn' );
+/* Adds core WordPress HTML5 support. */
+add_theme_support( 'html5', array( 'caption', 'comment-form', 'comment-list', 'gallery', 'search-form' ) );
+/* Make text widgets shortcode aware. */
+add_filter( 'widget_text', 'do_shortcode' );
+
+/* Don't strip tags on single post titles. */
+remove_filter( 'single_post_title', 'strip_tags' );
+
+
 // Register wp_nav_menu() menus (http://codex.wordpress.org/Function_Reference/register_nav_menus)
 register_nav_menus(array(
 'primary_navigation' => __('Primary Navigation', 'monomyth'),
@@ -49,10 +58,17 @@ function monomyth_scripts() {
   global $wp_scripts;
   
 //  wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/less/bootstrap.less', false);
+if(WP_DEBUG)
+{
+  wp_enqueue_style('fontawesome', get_template_directory_uri() . '/assets/css-cache/fontawesome.css', false);
+  wp_enqueue_style('monomyth_app', get_template_directory_uri() . '/assets/css-cache/monomyth_app.css', false);
+}
+else
+{
   wp_enqueue_style('fontawesome', get_template_directory_uri() . '/assets/less/font-awesome/font-awesome.less', false);
   wp_enqueue_style('monomyth_app', get_template_directory_uri() . '/assets/app.less', false);
-  wp_enqueue_style('monomyth_ie', get_template_directory_uri() . '/assets/ie.css', false);
- 
+} 
+ wp_enqueue_style('monomyth_ie', get_template_directory_uri() . '/assets/ie.css', false);
  $wp_styles->add_data( 'monomyth_ie', 'conditional', 'lt IE 10' ); // add conditional wrapper around ie stylesheet
   // jQuery is loaded using the same method from HTML5 Boilerplate:
   // Grab Google CDN's latest jQuery with a protocol relative URL; fallback to local if offline
@@ -66,21 +82,24 @@ function monomyth_scripts() {
     wp_enqueue_script('comment-reply');
   }
 
-  wp_register_script('html5_shiv', 'https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js', array(), '0fc6af96786d8f267c8686338a34cd38', true);
-  wp_register_script('respondjs', 'https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js', array(), '0fc6af96786d8f267c8686338a34cd38', true);
   wp_register_script('bootstrap_js', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array(), '0fc6af96786d8f267c8686338a34cd38', true);
-  wp_register_script('monomyth_scripts', get_template_directory_uri() . '/assets/js/scripts.js', array(), '0fc6af96786d8f267c8686338a34cd38', false);
+/* We need to run into issue where I can justify the use of html5_shiv as well as respondjs	 */
+  //wp_register_script('html5_shiv', 'https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js', array(), '0fc6af96786d8f267c8686338a34cd38', true);
+  //wp_register_script('respondjs', 'https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js', array(), '0fc6af96786d8f267c8686338a34cd38', true);
+
+  /*it is better to keep our js into site_specific plugin*/
+  //wp_register_script('monomyth_scripts', get_template_directory_uri() . '/assets/js/scripts.js', array(), '0fc6af96786d8f267c8686338a34cd38', false);
   
   
 
   wp_enqueue_script('jquery');
   wp_enqueue_script('bootstrap_js');
-  wp_enqueue_script('html5_shiv');
-  wp_enqueue_script('respondjs');
-  wp_enqueue_script('monomyth_scripts');
+  //wp_enqueue_script('html5_shiv');
+  //wp_enqueue_script('respondjs');
+  //wp_enqueue_script('monomyth_scripts');
   
-   $wp_scripts->add_data( 'html5_shiv', 'conditional', 'lt IE 9' ); // add conditional wrapper around ie stylesheet
-   $wp_scripts->add_data( 'respondjs', 'conditional', 'lt IE 9' ); // add conditional wrapper around ie stylesheet
+  // $wp_scripts->add_data( 'html5_shiv', 'conditional', 'lt IE 9' ); // add conditional wrapper around ie stylesheet
+  // $wp_scripts->add_data( 'respondjs', 'conditional', 'lt IE 9' ); // add conditional wrapper around ie stylesheet
   
   
 }
