@@ -13,22 +13,30 @@ require( 'nice-search.php' );
 require( 'relative-urls.php' ); 
 require( 'admin-cleanup.php' ); 
 
+// launching this stuff after theme setup
+add_action( 'after_setup_theme','monomyth_theme_support' );
 
-add_theme_support( 'post-thumbnails' );
-add_theme_support( 'jquery-cdn' );
-/* Adds core WordPress HTML5 support. */
-add_theme_support( 'html5', array( 'caption', 'comment-form', 'comment-list', 'gallery', 'search-form' ) );
-/* Make text widgets shortcode aware. */
-add_filter( 'widget_text', 'do_shortcode' );
+function monomyth_theme_support(){
 
-/* Don't strip tags on single post titles. */
-remove_filter( 'single_post_title', 'strip_tags' );
+	add_theme_support( 'post-thumbnails' );
+	add_theme_support( 'jquery-cdn' );
+	/* Adds core WordPress HTML5 support. */
+	add_theme_support( 'html5', array( 'caption', 'comment-form', 'comment-list', 'gallery', 'search-form' ) );
+	/* Make text widgets shortcode aware. */
+	add_filter( 'widget_text', 'do_shortcode' );
+
+	/* Don't strip tags on single post titles. */
+	remove_filter( 'single_post_title', 'strip_tags' );
+
+	// wp menus
+	add_theme_support( 'menus' );
 
 
-// Register wp_nav_menu() menus (http://codex.wordpress.org/Function_Reference/register_nav_menus)
-register_nav_menus(array(
-'primary_navigation' => __('Primary Navigation', 'monomyth'),
-));
+	// Register wp_nav_menu() menus (http://codex.wordpress.org/Function_Reference/register_nav_menus)
+	register_nav_menus(array(
+	'primary_navigation' => __('Primary Navigation', 'monomyth'),
+	));
+}
 
 function monomyth_widgets_init() {
   // Sidebars
@@ -58,7 +66,7 @@ function monomyth_scripts() {
   global $wp_scripts;
   
 //  wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/less/bootstrap.less', false);
-if(WP_DEBUG)
+if(!WP_DEBUG) 
 {
   wp_enqueue_style('fontawesome', get_template_directory_uri() . '/assets/css-cache/fontawesome.css', false);
   wp_enqueue_style('monomyth_app', get_template_directory_uri() . '/assets/css-cache/monomyth_app.css', false);
@@ -137,3 +145,19 @@ function monomyth_less_url(){
 	return get_template_directory_uri().'/assets/css-cache';
 }
 add_filter('wp_less_cache_url','monomyth_less_url');
+
+// Remove height/width attributes on images so they can be responsive
+add_filter( 'post_thumbnail_html', 'wp_bootstrap_remove_thumbnail_dimensions', 10 );
+add_filter( 'image_send_to_editor', 'wp_bootstrap_remove_thumbnail_dimensions', 10 );
+
+function wp_bootstrap_remove_thumbnail_dimensions( $html ) {
+    $html = preg_replace( '/(width|height)=\"\d*\"\s/', "", $html );
+    return $html;
+}
+// Add thumbnail class to thumbnail links
+function wp_bootstrap_add_class_attachment_link( $html ) {
+    $postid = get_the_ID();
+    $html = str_replace( '<a','<a class="thumbnail"',$html );
+    return $html;
+}
+add_filter( 'wp_get_attachment_link', 'wp_bootstrap_add_class_attachment_link', 10, 1 );
