@@ -6,7 +6,9 @@
 */
 
 //enqueue required basic scripts and styles -- bootstrap css, js and app and js
-
+if ( !defined('MM_PRODUCTION') )
+	define('MM_PRODUCTION', false);
+	
 // clean ups taken from roots and bones theme framework
 require( 'clean-up.php' ); 
 require( 'nice-search.php' ); 
@@ -34,7 +36,11 @@ function monomyth_theme_support(){
 
 	// Register wp_nav_menu() menus (http://codex.wordpress.org/Function_Reference/register_nav_menus)
 	register_nav_menus(array(
-	'primary_navigation' => __('Primary Navigation', 'monomyth'),
+		'primary_navigation' => __('Primary Navigation', 'monomyth'),
+	));
+
+	register_nav_menus(array(
+		'home_navigation' => __('Home Navigation', 'monomyth'),
 	));
 }
 
@@ -66,7 +72,7 @@ function monomyth_scripts() {
   global $wp_scripts;
   
 //  wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/less/bootstrap.less', false);
-if(!WP_DEBUG) 
+if(MM_PRODUCTION) 
 {
   wp_enqueue_style('fontawesome', get_template_directory_uri() . '/assets/css-cache/fontawesome.css', false);
   wp_enqueue_style('monomyth_app', get_template_directory_uri() . '/assets/css-cache/monomyth_app.css', false);
