@@ -32,16 +32,17 @@ function monomyth_theme_support(){
 
 	// wp menus
 	add_theme_support( 'menus' );
-
-
+	
+	if(MM_PRODUCTION) 
+	{
+		add_filter('acf/settings/show_admin','__return_false');
+	}
+	
 	// Register wp_nav_menu() menus (http://codex.wordpress.org/Function_Reference/register_nav_menus)
 	register_nav_menus(array(
 		'primary_navigation' => __('Primary Navigation', 'monomyth'),
 	));
 
-	register_nav_menus(array(
-		'home_navigation' => __('Home Navigation', 'monomyth'),
-	));
 }
 
 function monomyth_widgets_init() {
