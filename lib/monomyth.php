@@ -154,17 +154,28 @@ function monomyth_less_url(){
 add_filter('wp_less_cache_url','monomyth_less_url');
 
 // Remove height/width attributes on images so they can be responsive
-add_filter( 'post_thumbnail_html', 'wp_bootstrap_remove_thumbnail_dimensions', 10 );
-add_filter( 'image_send_to_editor', 'wp_bootstrap_remove_thumbnail_dimensions', 10 );
+add_filter( 'post_thumbnail_html', 'monomyth_remove_thumbnail_dimensions', 10 );
+add_filter( 'image_send_to_editor', 'monomyth_remove_thumbnail_dimensions', 10 );
 
-function wp_bootstrap_remove_thumbnail_dimensions( $html ) {
+function monomyth_remove_thumbnail_dimensions( $html ) {
     $html = preg_replace( '/(width|height)=\"\d*\"\s/', "", $html );
     return $html;
 }
 // Add thumbnail class to thumbnail links
-function wp_bootstrap_add_class_attachment_link( $html ) {
+function monomyth_add_class_attachment_link( $html ) {
     $postid = get_the_ID();
     $html = str_replace( '<a','<a class="thumbnail"',$html );
     return $html;
 }
-add_filter( 'wp_get_attachment_link', 'wp_bootstrap_add_class_attachment_link', 10, 1 );
+add_filter( 'wp_get_attachment_link', 'monomyth_add_class_attachment_link', 10, 1 );
+
+function monomyth_wp_title($title) {
+  if (is_feed()) {
+    return $title;
+  }
+
+  $title .= get_bloginfo('name');
+
+  return $title;
+}
+add_filter('wp_title', 'monomyth_wp_title', 10);
