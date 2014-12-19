@@ -8,7 +8,6 @@
 	<meta charset="utf-8">
 	<?php // Google Chrome Frame for IE ?>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title><?php wp_title(); ?></title>
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
 
 	<?php // icons & favicons (for more: http://www.jonathantneal.com/blog/understand-the-favicon/) ?>

@@ -22,6 +22,7 @@ function monomyth_theme_support(){
 
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'jquery-cdn' );
+	add_theme_support( 'title-tag' );
 	/* Adds core WordPress HTML5 support. */
 	add_theme_support( 'html5', array( 'caption', 'comment-form', 'comment-list', 'gallery', 'search-form' ) );
 	/* Make text widgets shortcode aware. */
