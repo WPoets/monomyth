@@ -137,12 +137,6 @@ function monomyth_theme_activation_action(){
 add_action('admin_init','monomyth_theme_activation_action');
 
 
-function monomyth_remove_thumbnail_dimensions( $html, $post_id, $post_image_id ) {
-    $html = preg_replace( '/(width|height)=\"\d*\"\s/', "", $html );
-    return $html;
-}
-add_filter( 'post_thumbnail_html', 'monomyth_remove_thumbnail_dimensions', 10, 3 );
-
 function monomyth_less_path(){
 	return get_template_directory().'/assets/css-cache';
 }
@@ -180,3 +174,10 @@ function monomyth_wp_title($title) {
   return $title;
 }
 add_filter('wp_title', 'monomyth_wp_title', 10);
+//for backward compatibility for time being will be removed after wordpress 4.2 release.
+if ( ! function_exists( '_wp_render_title_tag' ) ) :
+	function theme_slug_render_title() {
+		echo '<title>' . wp_title( '|', false, 'right' ) . "</title>\n";
+	}
+	add_action( 'wp_head', 'theme_slug_render_title' );
+endif;
