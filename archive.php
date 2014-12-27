@@ -51,7 +51,6 @@ get_header(); ?>
 		</aside> --><!-- /.sidebar -->
 	</div><!-- /.content -->
 </div>
-
-<?php get_footer(); ?>
+<?php get_footer(); 
 
 
