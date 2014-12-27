@@ -14,6 +14,7 @@ require( 'clean-up.php' );
 require( 'nice-search.php' ); 
 require( 'relative-urls.php' ); 
 require( 'admin-cleanup.php' ); 
+require( 'wp_bootstrap_navwalker.php' ); 
 
 // launching this stuff after theme setup
 add_action( 'after_setup_theme','monomyth_theme_support' );
@@ -181,3 +182,33 @@ if ( ! function_exists( '_wp_render_title_tag' ) ) :
 	}
 	add_action( 'wp_head', 'theme_slug_render_title' );
 endif;
+
+function monomyth_modify_nav_menu_args( $args )
+{
+
+	if(!isset($args['container']))
+	{
+		$args['container'] ='div';
+	}
+	if(!isset($args['container_class']))
+	{
+		$args['container_class'] = 'collapse navbar-collapse';
+	}
+	if(!isset($args['menu_class']))
+	{
+		$args['menu_class'] ='nav navbar-nav';
+	}
+	
+	if(!isset($args['fallback_cb']))
+	{
+		$args['fallback_cb']='wp_bootstrap_navwalker::fallback';
+	}
+	if(!isset($args['walker']))
+	{
+		$args['walker'] = new wp_bootstrap_navwalker();
+	}
+
+	return $args;
+}
+
+add_filter( 'wp_nav_menu_args', 'monomyth_modify_nav_menu_args' );
