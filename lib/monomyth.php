@@ -190,22 +190,16 @@ function monomyth_modify_nav_menu_args( $args )
 	{
 		$args['container'] ='div';
 	}
-	if(!isset($args['container_class']))
+	if(!isset($args['container_class']) || empty($args['container_class']))
 	{
 		$args['container_class'] = 'collapse navbar-collapse';
 	}
-	if(!isset($args['menu_class']))
-	{
-		$args['menu_class'] ='nav navbar-nav';
-	}
-	
-	if(!isset($args['fallback_cb']))
-	{
-		$args['fallback_cb']='wp_bootstrap_navwalker::fallback';
-	}
-	if(!isset($args['walker']))
+
+	if(!isset($args['walker']) || empty($args['walker']))
 	{
 		$args['walker'] = new wp_bootstrap_navwalker();
+		$args['fallback_cb']='wp_bootstrap_navwalker::fallback';
+		$args['menu_class'] =$args['menu_class'].' nav navbar-nav';
 	}
 
 	return $args;
