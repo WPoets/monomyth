@@ -32,13 +32,13 @@ get_header(); ?>
 				awesome2_library::setparam('default_taxonomy','category');
 				awesome2_library::setparam('default_term_slug',$cat->slug);
 				awesome2_library::setparam('current_archive_name',$cat->name);
-				if(awesome_library::get_post_from_slug('theme-category-' . $cat->slug . '-archive','aw_block',$ignore))
+				if(awesome2_library::get_post_from_slug('theme-category-' . $cat->slug . '-archive','aw_block',$ignore))
 					$shortcode='[aw2_block slug="theme-category-' . $cat->slug . '-archive"]'; 
 			}
 			else if( is_tag()){
 				//awesome2_library::setparam('default_tag',$wp_query->posts);
 				awesome2_library::setparam('current_archive_name',$cat->name);
-				if(awesome_library::get_post_from_slug('theme-tag-' . $cat->slug . '-archive','aw_block',$ignore))
+				if(awesome2_library::get_post_from_slug('theme-tag-' . $cat->slug . '-archive','aw_block',$ignore))
 					$shortcode='[aw2_block slug="theme-tag-' . $cat->slug . '-archive"]'; 
 			}
 
