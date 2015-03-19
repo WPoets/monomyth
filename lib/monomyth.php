@@ -77,12 +77,10 @@ function monomyth_scripts() {
 //  wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/less/bootstrap.less', false);
 if(MM_PRODUCTION) 
 {
-  wp_enqueue_style('fontawesome', get_template_directory_uri() . '/assets/css-cache/fontawesome.css', false, null);
   wp_enqueue_style('monomyth_app', get_template_directory_uri() . '/assets/css-cache/monomyth_app.css', false, null);
 }
 else
 {
-  wp_enqueue_style('fontawesome', get_template_directory_uri() . '/assets/less/font-awesome/font-awesome.less', false, null);
   wp_enqueue_style('monomyth_app', get_template_directory_uri() . '/assets/app.less', false, null);
 } 
  wp_enqueue_style('monomyth_ie', get_template_directory_uri() . '/assets/ie.css', false, null);
