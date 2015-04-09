@@ -12,9 +12,9 @@
 
 	<?php // icons & favicons (for more: http://www.jonathantneal.com/blog/understand-the-favicon/) ?>
 	<link rel="apple-touch-icon" href="<?php echo get_template_directory_uri(); ?>/assets/images/apple-icon-touch.png">
-	<link rel="icon" href="<?php echo get_template_directory_uri(); ?>/assets/images/favicon.png">
+	<link rel="icon" href="<?php global $monomyth_options; echo $monomyth_options['opt-favicon']['url']; ?>">
 	<!--[if IE]>
-		<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/assets/images/favicon.ico">
+		<link rel="shortcut icon" href="<?php global $monomyth_options; echo $monomyth_options['opt-favicon']['url']; ?>">
 	<![endif]-->
 	<?php // or, set /favicon.ico for IE10 win ?>
 	<meta name="msapplication-TileColor" content="#f01d4f">
