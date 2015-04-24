@@ -168,7 +168,10 @@ function monomyth_wp_title($title) {
     return $title;
   }
 
-  $title .= get_bloginfo('name');
+	if(!is_front_page())
+	{
+		$title =$title.' | '.get_bloginfo('name');
+	}	
 
   return $title;
 }
