@@ -1,0 +1,395 @@
+//==Base size pallet variables 
+@font-size-smallest:	ceil((@font-size-base * 0.78)); // ~11px
+@font-size-smaller:		ceil((@font-size-base * 0.85)); // ~12px
+@font-size-base-small:	ceil((@font-size-base * 0.92)); // ~13px
+@font-size-base:		14px;							// ~base font 14px
+@font-size-large:		ceil((@font-size-base * 1.14)); // ~16px
+@font-size-larger:		ceil((@font-size-base * 1.25)); // ~18px
+@font-size-largest:		ceil((@font-size-base * 1.5)); // ~21px
+@font-size-jumbo:		floor((@font-size-base * 2.15)); // ~30px
+@font-size-giant:		floor((@font-size-base * 2.6)); // ~36px
+
+
+//==Gaps pallet
+@gap-s10:		5px;
+@gap-s20:		10px;
+@gap-s30:		12px;  //== default Gap between two Paragraph
+@gap-s40:		15px;
+@gap-s50:		20px;
+@gap-s60:		25px;
+@gap-s70:		30px;
+@gap-s80:		35px;
+@gap-s90:		40px;
+@gap-s100:		60px;
+
+
+//==Padding pallet
+@pad-s10:		5px;
+@pad-s20:		10px;
+@pad-s30:		12px;
+@pad-s40:		15px;  //== Bootstrap Default
+@pad-s50:		20px;
+@pad-s60:		25px;
+@pad-s70:		40px;
+@pad-s80:		50px;
+@pad-s90:		60px;
+@pad-s100:		70px;
+
+
+// ==Colour pallet
+@brand-secondary:	#3d63ac;
+@brand-third:		#98ce44;
+@brand-fourth:		#00b7f1;
+@brand-fifth:       #fcb714; 
+@brand-sixth:  		#e11711;
+@brand-black:  		#000000;
+@brand-white:  		#ffffff;
+
+//==Line Height pallet
+@line-height-s10:		18px;
+@line-height-s20:		19px;
+@line-height-s30:		20px;
+@line-height-s40:		21px;
+@line-height-s50:		24px; //== Base line height
+
+
+//== Buttons
+@btn-secondary-color:        #fff;
+@btn-secondary-bg:           @brand-secondary;
+@btn-secondary-border:       #0c3482;
+
+@btn-third-color:            #fff;
+@btn-third-bg:               @brand-third;
+@btn-third-border:           #0c3482;
+
+@btn-fourth-color:           #fff;
+@btn-fourth-bg:              @brand-fourth;
+@btn-fourth-border:          #0c3482;
+
+@btn-fifth-color:           #fff;
+@btn-fifth-bg:              @brand-fifth;
+@btn-fifth-border:          #0c3482;
+
+@btn-sixth-color:           #fff;
+@btn-sixth-bg:              @brand-sixth;
+@btn-sixth-border:          #0c3482;
+
+@btn-white-color:           #000;
+@btn-white-bg:              @brand-white;
+@btn-white-border:          #0c3482;
+
+@btn-black-color:           #fff;
+@btn-black-bg:              @brand-black;
+@btn-black-border:          #0c3482;
+
+//== Labels
+@label-secondary-bg:        @brand-secondary;
+@label-third-bg:            @brand-third;
+@label-fourth-bg:           @brand-fourth;
+@label-fifth-bg:           @brand-fifth;
+@label-sixth-bg:           @brand-sixth;
+@label-white-bg:           @brand-white;
+@label-black-bg:           @brand-black;
+
+//== Border color for elements within panels
+@panel-secondary-text:          #fff;
+@panel-secondary-border:        @brand-secondary;
+@panel-secondary-heading-bg:    @brand-secondary;
+
+@panel-third-text:              #fff;
+@panel-third-border:            @brand-third;
+@panel-third-heading-bg:        @brand-third;
+
+@panel-fourth-text:             #fff;
+@panel-fourth-border:           @brand-fourth;
+@panel-fourth-heading-bg:       @brand-fourth;
+
+@panel-fifth-text:             #fff;
+@panel-fifth-border:           @brand-fifth;
+@panel-fifth-heading-bg:       @brand-fifth;
+
+@panel-sixth-text:             #fff;
+@panel-sixth-border:           @brand-sixth;
+@panel-sixth-heading-bg:       @brand-sixth;
+
+@panel-white-text:             #fff;
+@panel-white-border:           @brand-white;
+@panel-white-heading-bg:       @brand-white;
+
+@panel-black-text:             #fff;
+@panel-black-border:           @brand-black;
+@panel-black-heading-bg:       @brand-black;
+
+//==font classes
+.font-size-smallest{ font-size: @font-size-smallest; }
+.font-size-smaller{ font-size: @font-size-smaller; }
+.font-size-base-small{ font-size: @font-size-base-small; }
+.font-size-base{ font-size: @font-size-base; }
+.font-size-large{ font-size: @font-size-large; }
+.font-size-larger{ font-size: @font-size-larger; }
+.font-size-largest{ font-size: @font-size-largest; }
+.font-size-jumbo{ font-size: @font-size-jumbo; }
+.font-size-giant{ font-size: @font-size-giant; }
+
+
+//==Gaps Classes
+.gap-s10{ height: @gap-s10; clear: both; }
+.gap-s20{ height: @gap-s20; clear: both; }
+.gap-s30{ height: @gap-s30; clear: both; }
+.gap-s40{ height: @gap-s40; clear: both; }
+.gap-s50{ height: @gap-s50; clear: both; }
+.gap-s60{ height: @gap-s60; clear: both; }
+.gap-s70{ height: @gap-s70; clear: both; }
+.gap-s80{ height: @gap-s80; clear: both; }
+.gap-s90{ height: @gap-s90; clear: both; }
+.gap-s100{ height: @gap-s100; clear: both; }
+
+//==padding classes
+.pad-s10{ padding: @pad-s10; }
+.pad-lr-s10{ padding-left: @pad-s10; padding-right: @pad-s10; }
+.pad-tb-s10{ padding-top: @pad-s10; padding-bottom: @pad-s10; }
+
+.pad-s20{ padding: @pad-s20; }
+.pad-lr-s20{ padding-left: @pad-s20; padding-right: @pad-s20; }
+.pad-tb-s20{ padding-top: @pad-s20; padding-bottom: @pad-s20; }
+
+.pad-s30{ padding: @pad-s30; }
+.pad-lr-s30{ padding-left: @pad-s30; padding-right: @pad-s30; }
+.pad-tb-s30{ padding-top: @pad-s30; padding-bottom: @pad-s30; }
+
+.pad-s40{ padding: @pad-s40; }
+.pad-lr-s40{ padding-left: @pad-s40; padding-right: @pad-s40; }
+.pad-tb-s40{ padding-top: @pad-s40; padding-bottom: @pad-s40; }
+
+.pad-s50{ padding: @pad-s50; }
+.pad-lr-s50{ padding-left: @pad-s50; padding-right: @pad-s50; }
+.pad-tb-s50{ padding-top: @pad-s50; padding-bottom: @pad-s50; }
+
+.pad-s60{ padding: @pad-s60; }
+.pad-lr-s60{ padding-left: @pad-s60; padding-right: @pad-s60; }
+.pad-tb-s60{ padding-top: @pad-s60; padding-bottom: @pad-s60; }
+
+.pad-s70{ padding: @pad-s70; }
+.pad-lr-s70{ padding-left: @pad-s70; padding-right: @pad-s70; }
+.pad-tb-s70{ padding-top: @pad-s70; padding-bottom: @pad-s70; }
+
+.pad-s80{ padding: @pad-s80; }
+.pad-lr-s80{ padding-left: @pad-s80; padding-right: @pad-s80; }
+.pad-tb-s80{ padding-top: @pad-s80; padding-bottom: @pad-s80; }
+
+.pad-s90{ padding: @pad-s90; }
+.pad-lr-s90{ padding-left: @pad-s90; padding-right: @pad-s90; }
+.pad-tb-s90{ padding-top: @pad-s90; padding-bottom: @pad-s90; }
+
+.pad-s100{ padding: @pad-s100; }
+.pad-lr-s100{ padding-left: @pad-s100; padding-right: @pad-s100; }
+.pad-tb-s100{ padding-top: @pad-s100; padding-bottom: @pad-s100; }
+
+
+//==Line Height Classes
+.line-height-s10{ line-height: @line-height-s10; }
+.line-height-s20{ line-height: @line-height-s20; }
+.line-height-s30{ line-height: @line-height-s30; }
+.line-height-s40{ line-height: @line-height-s40; }
+.line-height-s50{ line-height: @line-height-s50; }
+
+
+//==Colours  classes
+.brand-secondary{ color: @brand-secondary; } // #3d63ac
+.brand-third{ color: @brand-third; }		
+.brand-fourth{ color: @brand-fourth; }	
+            
+.gray-darker{ color:@gray-darker; }    		// #383637         
+.gray-dark{ color:@gray-dark; }             // #4b4b4b 
+.gray{ color:@gray; }                  		// #747474
+.gray-light{ color:@gray-light; }           // #e0e0e0  
+.gray-lighter{ color:@gray-lighter; }   	// #f4f2f3  
+
+.brand-primary{ color:@brand-primary; }     // #e61f53
+.brand-success{ color:@brand-success; }     // #98ce44      
+.brand-info{ color:@brand-info; }           // #00b7f1   
+.brand-warning{ color:@brand-warning; }     // #fcb714    
+.brand-danger{ color:@brand-danger; }   	// #e11711
+ 
+.brand-white{background-color:#fff}
+.brand-black{background-color:#000}
+
+
+//== Background Colors  classes
+.brand-secondary-bg { background-color: @brand-secondary; }
+.brand-third-bg { background-color: @brand-third; }		
+.brand-fourth-bg { background-color: @brand-fourth; }	
+
+           
+.gray-darker-bg { background-color:@gray-darker; }             
+.gray-dark-bg { background-color:@gray-dark; }              
+.gray-bg { background-color:@gray; }                  
+.gray-light-bg { background-color:@gray-light; }             
+.gray-lighter-bg { background-color:@gray-lighter; }   
+
+.brand-primary-bg { color:@brand-primary; }     
+.brand-success-bg { color:@brand-success; }           
+.brand-info-bg { color:@brand-info; }              
+.brand-warning-bg { color:@brand-warning; }         
+.brand-danger-bg { color:@brand-danger; }  
+
+.brand-white-bg{background-color:#fff}
+.brand-black-bg{background-color:#000}
+
+
+//== Buttons classes
+.btn-secondary {
+  .button-variant(@btn-secondary-color; @btn-secondary-bg; @btn-secondary-border);
+}
+.btn-third {
+  .button-variant(@btn-third-color; @btn-third-bg; @btn-third-border);
+}
+.btn-fourth {
+  .button-variant(@btn-fourth-color; @btn-fourth-bg; @btn-fourth-border);
+}
+.btn-fifth {
+  .button-variant(@btn-fifth-color; @btn-fifth-bg; @btn-fifth-border);
+}
+.btn-sixth {
+  .button-variant(@btn-sixth-color; @btn-sixth-bg; @btn-sixth-border);
+}
+.btn-white {
+  .button-variant(@btn-white-color; @btn-white-bg; @btn-white-border);
+}
+.btn-black {
+  .button-variant(@btn-black-color; @btn-black-bg; @btn-black-border);
+}
+
+
+//== Labels
+.label-secondary {
+  .label-variant(@label-secondary-bg);
+}
+.label-third {
+  .label-variant(@label-third-bg);
+}
+.label-fourth {
+  .label-variant(@label-fourth-bg);
+}
+.label-fifth {
+  .label-variant(@label-fifth-bg);
+}
+.label-sixth {
+  .label-variant(@label-sixth-bg);
+}
+.label-white {
+  .label-variant(@label-white-bg);
+}
+.label-black {
+  .label-variant(@label-black-bg);
+}
+
+
+//== Border color for elements within panels
+.panel-secondary {
+  .panel-variant(@panel-secondary-border; @panel-secondary-text; @panel-secondary-heading-bg; @panel-secondary-border);
+}
+.panel-third {
+  .panel-variant(@panel-third-border; @panel-third-text; @panel-third-heading-bg; @panel-third-border);
+}
+.panel-fourth {
+  .panel-variant(@panel-fourth-border; @panel-fourth-text; @panel-fourth-heading-bg; @panel-fourth-border);
+}
+.panel-fifth {
+  .panel-variant(@panel-fifth-border; @panel-fifth-text; @panel-fifth-heading-bg; @panel-fifth-border);
+}
+.panel-sixth {
+  .panel-variant(@panel-sixth-border; @panel-sixth-text; @panel-sixth-heading-bg; @panel-sixth-border);
+}
+.panel-white {
+  .panel-variant(@panel-white-border; @panel-white-text; @panel-white-heading-bg; @panel-white-border);
+}
+.panel-black {
+  .panel-variant(@panel-black-border; @panel-black-text; @panel-black-heading-bg; @panel-black-border);
+}
+
+
+//=====================************ New Update***********===============
+
+.no-padding{padding: 0;}
+.no-margin{margin: 0;}
+
+.row.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+.row.no-gutters > [class^="col-"],
+.row.no-gutters > [class*=" col-"] {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.no-margin-top{margin-top: 0;}
+.no-margin-right{margin-right: 0;}
+.no-margin-bottom{margin-bottom: 0;}
+.no-margin-left{margin-left: 0;}
+
+.no-padding-top{padding-top: 0;}
+.no-padding-right{padding-right: 0;}
+.no-padding-bottom{padding-bottom: 0;}
+.no-padding-left{padding-left: 0;}
+
+// paragraph spacing palette
+.p-none{margin: 0}
+.p-small-gap{margin: 0 0 5px}
+.p-medium-gap{margin: 0 0 10px}
+.p-large-gap{margin: 0 0 15px}
+
+
+// Bootstrap Five Equal Coloum
+.col-five-1
+{
+	@media(min-width:992px){
+		width: 20% !important;
+		float: left;
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+}
+
+
+//---------------------********** Remove row margin ***********-----------------
+
+div.no-gutters > [class^="col-"],
+div.no-gutters > [class*=" col-"] {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+//---------------------********** For font awesome  ***********-----------------
+
+i.font-size-smallest{ font-size: @font-size-smallest; }
+i.font-size-smaller{ font-size: @font-size-smaller; }
+i.font-size-base-small{ font-size: @font-size-base-small; }
+i.font-size-base{ font-size: @font-size-base; }
+i.font-size-large{ font-size: @font-size-large; }
+i.font-size-larger{ font-size: @font-size-larger; }
+i.font-size-largest{ font-size: @font-size-largest; }
+i.font-size-jumbo{ font-size: @font-size-jumbo; }
+i.font-size-giant{ font-size: @font-size-giant; }
+
+
+//font palette - weight
+
+.font-light{font-weight:300}
+.font-regular{font-weight:400}
+.font-medium{font-weight:600}
+.font-bold{font-weight:700}
+
+.text-initial{text-transform: initial}
+.text-italic{font-style: italic;}
+
+
+@media(max-width: 991px)
+{
+	body{
+		font-size: 13px;
+	}
+}
+
+

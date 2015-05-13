@@ -8,7 +8,7 @@ get_header(); ?>
 <div class="container">
 <div class="content row">
 	<main class="main  col-lg-8 col-md-8 col-sm-8 col-xs-12" role="main">
-		<?php while ( have_posts() ) : the_post(); ?>
+		<?php while ( have_posts() ) : the_post(); awesome2_library::setparam('default_item',$post); ?>
 
 		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 			<header class="entry-header">

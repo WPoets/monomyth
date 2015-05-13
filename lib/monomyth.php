@@ -6,12 +6,15 @@
 */
 
 //enqueue required basic scripts and styles -- bootstrap css, js and app and js
-
+if ( !defined('MM_PRODUCTION') )
+	define('MM_PRODUCTION', false);
+	
 // clean ups taken from roots and bones theme framework
 require( 'clean-up.php' ); 
 require( 'nice-search.php' ); 
 require( 'relative-urls.php' ); 
 require( 'admin-cleanup.php' ); 
+require( 'wp_bootstrap_navwalker.php' ); 
 
 // launching this stuff after theme setup
 add_action( 'after_setup_theme','monomyth_theme_support' );
@@ -20,6 +23,7 @@ function monomyth_theme_support(){
 
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'jquery-cdn' );
+	add_theme_support( 'title-tag' );
 	/* Adds core WordPress HTML5 support. */
 	add_theme_support( 'html5', array( 'caption', 'comment-form', 'comment-list', 'gallery', 'search-form' ) );
 	/* Make text widgets shortcode aware. */
@@ -30,12 +34,17 @@ function monomyth_theme_support(){
 
 	// wp menus
 	add_theme_support( 'menus' );
-
-
+	
+	if(MM_PRODUCTION) 
+	{
+		add_filter('acf/settings/show_admin','__return_false');
+	}
+	
 	// Register wp_nav_menu() menus (http://codex.wordpress.org/Function_Reference/register_nav_menus)
 	register_nav_menus(array(
-	'primary_navigation' => __('Primary Navigation', 'monomyth'),
+		'primary_navigation' => __('Primary Navigation', 'monomyth'),
 	));
+
 }
 
 function monomyth_widgets_init() {
@@ -66,17 +75,15 @@ function monomyth_scripts() {
   global $wp_scripts;
   
 //  wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/less/bootstrap.less', false);
-if(!WP_DEBUG) 
+if(MM_PRODUCTION) 
 {
-  wp_enqueue_style('fontawesome', get_template_directory_uri() . '/assets/css-cache/fontawesome.css', false);
-  wp_enqueue_style('monomyth_app', get_template_directory_uri() . '/assets/css-cache/monomyth_app.css', false);
+  wp_enqueue_style('monomyth_app', get_template_directory_uri() . '/assets/css-cache/monomyth_app.css', false, null);
 }
 else
 {
-  wp_enqueue_style('fontawesome', get_template_directory_uri() . '/assets/less/font-awesome/font-awesome.less', false);
-  wp_enqueue_style('monomyth_app', get_template_directory_uri() . '/assets/app.less', false);
+  wp_enqueue_style('monomyth_app', get_template_directory_uri() . '/assets/app.less', false, null);
 } 
- wp_enqueue_style('monomyth_ie', get_template_directory_uri() . '/assets/ie.css', false);
+ wp_enqueue_style('monomyth_ie', get_template_directory_uri() . '/assets/ie.css', false, null);
  $wp_styles->add_data( 'monomyth_ie', 'conditional', 'lt IE 10' ); // add conditional wrapper around ie stylesheet
   // jQuery is loaded using the same method from HTML5 Boilerplate:
   // Grab Google CDN's latest jQuery with a protocol relative URL; fallback to local if offline
@@ -129,12 +136,6 @@ function monomyth_theme_activation_action(){
 add_action('admin_init','monomyth_theme_activation_action');
 
 
-function monomyth_remove_thumbnail_dimensions( $html, $post_id, $post_image_id ) {
-    $html = preg_replace( '/(width|height)=\"\d*\"\s/', "", $html );
-    return $html;
-}
-add_filter( 'post_thumbnail_html', 'monomyth_remove_thumbnail_dimensions', 10, 3 );
-
 function monomyth_less_path(){
 	return get_template_directory().'/assets/css-cache';
 }
@@ -147,17 +148,62 @@ function monomyth_less_url(){
 add_filter('wp_less_cache_url','monomyth_less_url');
 
 // Remove height/width attributes on images so they can be responsive
-add_filter( 'post_thumbnail_html', 'wp_bootstrap_remove_thumbnail_dimensions', 10 );
-add_filter( 'image_send_to_editor', 'wp_bootstrap_remove_thumbnail_dimensions', 10 );
+add_filter( 'post_thumbnail_html', 'monomyth_remove_thumbnail_dimensions', 10 );
+add_filter( 'image_send_to_editor', 'monomyth_remove_thumbnail_dimensions', 10 );
 
-function wp_bootstrap_remove_thumbnail_dimensions( $html ) {
+function monomyth_remove_thumbnail_dimensions( $html ) {
     $html = preg_replace( '/(width|height)=\"\d*\"\s/', "", $html );
     return $html;
 }
 // Add thumbnail class to thumbnail links
-function wp_bootstrap_add_class_attachment_link( $html ) {
+function monomyth_add_class_attachment_link( $html ) {
     $postid = get_the_ID();
     $html = str_replace( '<a','<a class="thumbnail"',$html );
     return $html;
 }
-add_filter( 'wp_get_attachment_link', 'wp_bootstrap_add_class_attachment_link', 10, 1 );
+add_filter( 'wp_get_attachment_link', 'monomyth_add_class_attachment_link', 10, 1 );
+
+function monomyth_wp_title($title) {
+  if (is_feed()) {
+    return $title;
+  }
+
+	if(!is_front_page())
+	{
+		$title =$title.' | '.get_bloginfo('name');
+	}	
+
+  return $title;
+}
+add_filter('wp_title', 'monomyth_wp_title', 10);
+//for backward compatibility for time being will be removed after wordpress 4.2 release.
+if ( ! function_exists( '_wp_render_title_tag' ) ) :
+	function theme_slug_render_title() {
+		echo '<title>' . wp_title( '|', false, 'right' ) . "</title>\n";
+	}
+	add_action( 'wp_head', 'theme_slug_render_title' );
+endif;
+
+function monomyth_modify_nav_menu_args( $args )
+{
+
+	if(!isset($args['container']))
+	{
+		$args['container'] ='div';
+	}
+	if(!isset($args['container_class']) || empty($args['container_class']))
+	{
+		$args['container_class'] = 'collapse navbar-collapse';
+	}
+
+	if(!isset($args['walker']) || empty($args['walker']))
+	{
+		$args['walker'] = new wp_bootstrap_navwalker();
+		$args['fallback_cb']='wp_bootstrap_navwalker::fallback';
+		$args['menu_class'] =$args['menu_class'].' nav navbar-nav';
+	}
+
+	return $args;
+}
+
+add_filter( 'wp_nav_menu_args', 'monomyth_modify_nav_menu_args' );
