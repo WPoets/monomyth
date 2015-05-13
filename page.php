@@ -23,9 +23,7 @@ get_header(); ?>
 					) );
 				?>
 			</div><!-- .entry-content -->
-			<footer class="entry-footer">
-			<?php //edit_post_link('Edit', '<span class="edit-link">', '</span>' ); ?>
-			</footer>
+			<footer class="entry-footer"></footer>
 		</article><!-- #post-## -->
 
 		<?php

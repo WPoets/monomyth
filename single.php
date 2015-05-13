@@ -9,14 +9,15 @@ get_header(); ?>
 		<main class="main col-sm-12 col-xs-12" role="main">
 			<?php while ( have_posts() ) : the_post();
 			$post_type=get_post_type( $post );
-	
+			$content=null;
 			awesome2_library::setparam('default_item',$post);
-			if(awesome2_library::get_post_from_slug('theme-' . $post_type . '-single','aw_block',$ignore)){
-				echo do_shortcode('[aw2_block slug="theme-' . $post_type . '-single"]'); 
+			if(awesome2_library::get_post_from_slug( $post_type . '-single','aw2_page',$ignore)){
+				awesome_library::get_post_content($post_type . '-single','aw2_page',$content);
 			}	
-			else{
-				echo do_shortcode('[aw2_block slug="theme-single"]'); 
+			else{				
+				awesome_library::get_post_content('single','aw2_core',$content);
 			}
+			echo do_shortcode($content);
 			// If comments are open or we have at least one comment, load up the comment template
 			if ( comments_open() || '0' != get_comments_number() ) :
 				comments_template();

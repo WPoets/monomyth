@@ -26,5 +26,6 @@
 <body <?php body_class(); ?>>
 <div id="background_ovelay"></div>
 <?php
-
-echo do_shortcode('[aw2_block slug="theme-header"]');
+$post_content=null;
+awesome_library::get_post_content('header','aw2_core',$post_content);
+echo do_shortcode($post_content);
