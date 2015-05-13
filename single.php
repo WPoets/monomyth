@@ -12,10 +12,10 @@ get_header(); ?>
 			$content=null;
 			awesome2_library::setparam('default_item',$post);
 			if(awesome2_library::get_post_from_slug( $post_type . '-single','aw2_page',$ignore)){
-				awesome_library::get_post_content($post_type . '-single','aw2_page',$content);
+				awesome2_library::get_post_content($post_type . '-single','aw2_page',$content);
 			}	
 			else{				
-				awesome_library::get_post_content('single','aw2_core',$content);
+				awesome2_library::get_post_content('single','aw2_core',$content);
 			}
 			echo do_shortcode($content);
 			// If comments are open or we have at least one comment, load up the comment template

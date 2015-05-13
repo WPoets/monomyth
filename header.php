@@ -27,5 +27,5 @@
 <div id="background_ovelay"></div>
 <?php
 $post_content=null;
-awesome_library::get_post_content('header','aw2_core',$post_content);
+awesome2_library::get_post_content('header','aw2_core',$post_content);
 echo do_shortcode($post_content);

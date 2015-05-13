@@ -1,6 +1,6 @@
 <?php
 $footer_content=null;
-awesome_library::get_post_content('footer','aw2_core',$footer_content);
+awesome2_library::get_post_content('footer','aw2_core',$footer_content);
 echo do_shortcode($footer_content);
  wp_footer(); 
  if (current_user_can('develop_for_awesomeui')) {

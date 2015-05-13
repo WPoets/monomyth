@@ -9,7 +9,7 @@ get_header(); ?>
 		<main class="main col-md-12 col-xs-12" role="main">
 			<?php 
 			$content ='';
-			awesome_library::get_post_content('archive','aw2_code',$content);
+			awesome2_library::get_post_content('archive','aw2_code',$content);
 			
 			awesome2_library::setparam('default_collection',$wp_query->posts);
 			if(is_post_type_archive( ))
@@ -17,7 +17,7 @@ get_header(); ?>
 				$post_type = get_query_var('post_type');
 				awesome2_library::setparam('current_archive_name',$post_type);
 				if(awesome2_library::get_post_from_slug( $post_type . '-archive','aw2_page',$ignore))
-					awesome_library::get_post_content($post_type . '-archive','aw2_page',$content);
+					awesome2_library::get_post_content($post_type . '-archive','aw2_page',$content);
 			}
 			else if(is_tax())
 			{
@@ -26,7 +26,7 @@ get_header(); ?>
 				awesome2_library::setparam('default_term_slug',$tax->slug);
 				awesome2_library::setparam('current_archive_name',$tax->name);
 				if(awesome2_library::get_post_from_slug($tax->taxonomy . '-archive','aw2_page',$ignore))
-					awesome_library::get_post_content($tax->taxonomy . '-archive','aw2_page',$content);
+					awesome2_library::get_post_content($tax->taxonomy . '-archive','aw2_page',$content);
 
 			}
 			else if(is_category()){
@@ -36,13 +36,13 @@ get_header(); ?>
 				awesome2_library::setparam('current_archive_name',$cat->name);
 				
 				if(awesome2_library::get_post_from_slug($cat->slug . '-archive','aw2_page',$ignore))
-					awesome_library::get_post_content($cat->slug . '-archive','aw2_page',$content);
+					awesome2_library::get_post_content($cat->slug . '-archive','aw2_page',$content);
 			}
 			else if( is_tag()){
 				//awesome2_library::setparam('default_tag',$wp_query->posts);
 				awesome2_library::setparam('current_archive_name',$cat->name);
 				if(awesome2_library::get_post_from_slug($cat->slug . '-archive','aw2_page',$ignore))
-					awesome_library::get_post_content($cat->slug . '-archive','aw2_page',$content);
+					awesome2_library::get_post_content($cat->slug . '-archive','aw2_page',$content);
 			}
 
 			
