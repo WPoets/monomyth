@@ -9,7 +9,7 @@ get_header(); ?>
 		<main class="main col-md-12 col-xs-12" role="main">
 			<?php 
 			$content ='';
-			awesome2_library::get_post_content('archive','aw2_code',$content);
+			awesome2_library::get_post_content('archive','aw2_core',$content);
 			
 			awesome2_library::setparam('default_collection',$wp_query->posts);
 			if(is_post_type_archive( ))
