@@ -147,14 +147,6 @@ function monomyth_less_url(){
 }
 add_filter('wp_less_cache_url','monomyth_less_url');
 
-// Remove height/width attributes on images so they can be responsive
-add_filter( 'post_thumbnail_html', 'monomyth_remove_thumbnail_dimensions', 10 );
-add_filter( 'image_send_to_editor', 'monomyth_remove_thumbnail_dimensions', 10 );
-
-function monomyth_remove_thumbnail_dimensions( $html ) {
-    $html = preg_replace( '/(width|height)=\"\d*\"\s/', "", $html );
-    return $html;
-}
 // Add thumbnail class to thumbnail links
 function monomyth_add_class_attachment_link( $html ) {
     $postid = get_the_ID();
