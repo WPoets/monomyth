@@ -10,7 +10,7 @@
 	<?php // Google Chrome Frame for IE ?>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
-  <link rel='dns-prefetch' href='cdnjs.cloudflare.com'>
+
 	<?php // icons & favicons (for more: http://www.jonathantneal.com/blog/understand-the-favicon/) ?>
 	<link rel="apple-touch-icon" href="<?php echo get_template_directory_uri(); ?>/assets/images/apple-icon-touch.png">
 	<link rel="icon" href="<?php global $monomyth_options; echo $monomyth_options['opt-favicon']['url']; ?>">
@@ -27,6 +27,11 @@
 <body <?php body_class(); ?>>
 <div id="background_ovelay"></div>
 <?php
+if(isset($GLOBALS['aw2_header']))
+	$local_header=$GLOBALS['aw2_header'];
+else
+	$local_header='header';
+	
 $post_content=null;
-awesome2_library::get_post_content('header','aw2_core',$post_content);
+awesome2_library::get_post_content($local_header,'aw2_core',$post_content);
 echo do_shortcode($post_content);
