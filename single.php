@@ -17,7 +17,7 @@ get_header(); ?>
 			else{				
 				awesome2_library::get_post_content('single','aw2_core',$content);
 			}
-			echo do_shortcode($content);
+			echo awesome2_library::parse_shortcode($content);
 			// If comments are open or we have at least one comment, load up the comment template
 			if ( comments_open() || '0' != get_comments_number() ) :
 				comments_template();
