@@ -32,6 +32,6 @@ if(isset($GLOBALS['aw2_header']))
 else
 	$local_header='header';
 	
-$post_content=null;
-awesome2_library::get_post_content($local_header,'aw2_core',$post_content);
+$post_content=awesome2_library::get_active_content($local_header);
 echo do_shortcode($post_content);
+
