@@ -46,7 +46,7 @@ get_header(); ?>
 			}
 
 			
-			echo do_shortcode($content);
+			echo awesome2_library::parse_shortcode($content);
 			?>
 		</main><!-- /.main -->
 		<!-- <aside class="sidebar  col-sm-4 col-xs-12" role="complementary">
