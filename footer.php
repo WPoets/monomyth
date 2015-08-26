@@ -7,7 +7,7 @@ else
 
 
 $footer_content=awesome2_library::get_active_content($local_footer);
-echo do_shortcode($footer_content);
+echo awesome2_library::parse_shortcode($footer_content);
 
  wp_footer(); 
  if (current_user_can('develop_for_awesomeui')) {

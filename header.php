@@ -42,5 +42,5 @@ else
 	$local_header='header';
 	
 $post_content=awesome2_library::get_active_content($local_header);
-echo do_shortcode($post_content);
+echo awesome2_library::parse_shortcode($post_content);
 

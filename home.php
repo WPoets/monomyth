@@ -14,7 +14,7 @@ get_header(); ?>
 		if(awesome2_library::get_post_from_slug('blog-list-page','aw2_page',$ignore))
 			awesome2_library::get_post_content('blog-list-page','aw2_page',$content);
 		
-		echo do_shortcode($content);
+		echo awesome2_library::parse_shortcode($content);
 		
 		?>
 	</main><!-- /.main -->
