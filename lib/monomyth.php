@@ -15,6 +15,7 @@ require( 'nice-search.php' );
 require( 'relative-urls.php' ); 
 require( 'admin-cleanup.php' ); 
 require( 'wp_bootstrap_navwalker.php' ); 
+require( 'update.php' ); 
 
 // launching this stuff after theme setup
 add_action( 'after_setup_theme','monomyth_theme_support' );
