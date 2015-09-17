@@ -4,7 +4,7 @@
  */
 
 get_header(); ?>
-<div class="container">
+<div class="container-fluid">
 <div class="content row">
 	<main class="main  col-lg-12 col-md-12 col-sm-12 col-xs-12" role="main">
 		<?php 	
