@@ -11,6 +11,7 @@ get_header(); ?>
 			$content ='';
 			awesome2_library::get_post_content('archive','aw2_core',$content);
 			
+			awesome2_library::setparam('default_collection'. '_wpquery',$wp_query);
 			awesome2_library::setparam('default_collection',$wp_query->posts);
 			if(is_post_type_archive( ))
 			{
