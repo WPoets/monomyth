@@ -10,12 +10,13 @@ if ( !defined('MM_PRODUCTION') )
 	define('MM_PRODUCTION', false);
 	
 // clean ups taken from roots and bones theme framework
+require( 'updates.php' ); 
 require( 'clean-up.php' ); 
 require( 'nice-search.php' ); 
 require( 'relative-urls.php' ); 
 require( 'admin-cleanup.php' ); 
 require( 'wp_bootstrap_navwalker.php' ); 
-require( 'update.php' ); 
+
 
 // launching this stuff after theme setup
 add_action( 'after_setup_theme','monomyth_theme_support' );
