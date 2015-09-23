@@ -4,7 +4,7 @@
  */
 
 get_header(); ?>
-<div class="container">
+<div class="container-fluid">
 	<div class="content row">
 		<main class="main col-sm-12 col-xs-12" role="main">
 			<?php while ( have_posts() ) : the_post();

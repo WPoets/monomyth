@@ -6,8 +6,8 @@
 */
 
 //enqueue required basic scripts and styles -- bootstrap css, js and app and js
-if ( !defined('MM_PRODUCTION') )
-	define('MM_PRODUCTION', false);
+//if ( !defined('MM_PRODUCTION') )
+//	define('MM_PRODUCTION', false);
 	
 // clean ups taken from roots and bones theme framework
 require( 'updates.php' ); 
@@ -37,7 +37,12 @@ function monomyth_theme_support(){
 	// wp menus
 	add_theme_support( 'menus' );
 	
-	if(MM_PRODUCTION) 
+	global $monomyth_options;
+	$MM_PRODUCTION = false;
+	if(isset($monomyth_options['dev_mode']))
+		$MM_PRODUCTION = $monomyth_options['dev_mode'];
+	
+    if($MM_PRODUCTION) {
 	{
 		add_filter('acf/settings/show_admin','__return_false');
 	}
@@ -75,18 +80,22 @@ add_action('widgets_init', 'monomyth_widgets_init');
 function monomyth_scripts() {
   global $wp_styles;
   global $wp_scripts;
-  
+  global $monomyth_options;
 //wp_enqueue_style('fontawesome', 'http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css', false, null); 
-if(MM_PRODUCTION) 
-{
-  wp_enqueue_style('monomyth_app', get_template_directory_uri() . '/assets/css-cache/monomyth_app.css', false, null);
-}
-else
-{
-  wp_enqueue_style('monomyth_app', get_template_directory_uri() . '/assets/app.less', false, null);
-} 
- wp_enqueue_style('monomyth_ie', get_template_directory_uri() . '/assets/ie.css', false, null);
- $wp_styles->add_data( 'monomyth_ie', 'conditional', 'lt IE 10' ); // add conditional wrapper around ie stylesheet
+
+	$MM_PRODUCTION = false;
+	if(isset($monomyth_options['dev_mode']))
+		$MM_PRODUCTION = $monomyth_options['dev_mode'];
+
+	if($MM_PRODUCTION) {
+	  wp_enqueue_style('monomyth_app', get_template_directory_uri() . '/assets/css-cache/monomyth_app.css', false, null);
+	}
+	else
+	{
+	  wp_enqueue_style('monomyth_app', get_template_directory_uri() . '/assets/app.less', false, null);
+	} 
+	 wp_enqueue_style('monomyth_ie', get_template_directory_uri() . '/assets/ie.css', false, null);
+	 $wp_styles->add_data( 'monomyth_ie', 'conditional', 'lt IE 10' ); // add conditional wrapper around ie stylesheet
   // jQuery is loaded using the same method from HTML5 Boilerplate:
   // Grab Google CDN's latest jQuery with a protocol relative URL; fallback to local if offline
   // It's kept in the header instead of footer to avoid conflicts with plugins.
