@@ -43,7 +43,6 @@ function monomyth_theme_support(){
 		$MM_PRODUCTION = $monomyth_options['dev_mode'];
 	
     if($MM_PRODUCTION) {
-	{
 		add_filter('acf/settings/show_admin','__return_false');
 	}
 	
@@ -179,13 +178,7 @@ function monomyth_wp_title($title) {
   return $title;
 }
 add_filter('wp_title', 'monomyth_wp_title', 10);
-//for backward compatibility for time being will be removed after wordpress 4.2 release.
-if ( ! function_exists( '_wp_render_title_tag' ) ) :
-	function theme_slug_render_title() {
-		echo '<title>' . wp_title( '|', false, 'right' ) . "</title>\n";
-	}
-	add_action( 'wp_head', 'theme_slug_render_title' );
-endif;
+
 
 function monomyth_modify_nav_menu_args( $args )
 {
@@ -210,3 +203,63 @@ function monomyth_modify_nav_menu_args( $args )
 }
 
 add_filter( 'wp_nav_menu_args', 'monomyth_modify_nav_menu_args' );
+
+//Moved CORE cpt here
+function monomyth_register_core_blocks(){
+if ( post_type_exists( 'aw2_core' ) ) 
+	return;
+
+register_post_type('aw2_core', array(
+	'label' => 'Awesome Core',
+	'description' => '',
+	'public' => true,
+	'exclude_from_search'=>true,
+	'publicly_queryable'=>false,
+	'show_in_nav_menus'=>false,
+	'show_ui' => true,
+	'show_in_menu' => false,
+	'capability_type' => 'post',
+	'map_meta_cap' => true,
+	'hierarchical' => false,
+	'menu_icon'   => 'dashicons-archive',
+	'menu_position'   => 31,
+	'rewrite' => array('slug' => 'aw2_core', 'with_front' => true),
+	'query_var' => true,
+	'supports' => array('title','editor','excerpt','revisions'),
+	'labels' => array (
+	  'name' => 'Awesome Core',
+	  'singular_name' => 'Awesome Core',
+	  'menu_name' => 'Awesome Core',
+	  'add_new' => 'Add Awesome Core',
+	  'add_new_item' => 'Add New Awesome Core',
+	  'edit' => 'Edit',
+	  'edit_item' => 'Edit Awesome Core',
+	  'new_item' => 'New Awesome Core',
+	  'view' => 'View Awesome Core',
+	  'view_item' => 'View Awesome Core',
+	  'search_items' => 'Search Awesome Core',
+	  'not_found' => 'No Awesome Core Found',
+	  'not_found_in_trash' => 'No Awesome Core Found in Trash',
+	  'parent' => 'Parent Awesome Core',
+	)
+	) ); 
+}	
+add_action('init', 'monomyth_register_core_blocks');
+
+function monomyth_register_menus_for_core(){
+	   add_submenu_page( 'awesome-dev', 'Awesome Core - Awesome Studio Framework', 'Core', 'develop_for_awesomeui', 'edit.php?post_type=aw2_core' );
+}
+add_action( 'admin_menu', 'monomyth_register_menus_for_core' );
+
+function monomyth_register_admin_bar_menus_for_core(){
+  global $wp_admin_bar;
+  
+  if(!current_user_can( 'develop_for_awesomeui' ))
+	return;
+
+	$menu_id = 'asf';
+	
+	$wp_admin_bar->add_menu(array('parent' => $menu_id, 'title' => 'Core', 'id' => 'asf-core', 'href' =>get_admin_url(null,'edit.php?post_type=aw2_core'), 'meta' => array('target' => '_blank')));
+}
+
+add_action( 'admin_bar_menu', 'monomyth_register_admin_bar_menus_for_core',2000 );
