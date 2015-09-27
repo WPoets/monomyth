@@ -30,7 +30,13 @@
 	<meta name="msapplication-TileColor" content="#f01d4f">
 	<meta name="msapplication-TileImage" content="<?php echo get_template_directory_uri(); ?>/assets/images/win8-tile-icon.png">
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
-	<?php wp_head(); ?>
+	<?php 
+	
+	$jsdef=null;
+	awesome2_library::get_post_content('global-js-definitions','aw2_core',$jsdef);
+	echo awesome2_library::parse_shortcode($jsdef);
+	
+	wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
