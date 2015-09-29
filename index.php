@@ -4,7 +4,7 @@
  */
 
 get_header(); ?>
-<div class="container">
+<div class="container-fluid">
 <div class="content row">
 
 <?php if (!have_posts()) : ?>
