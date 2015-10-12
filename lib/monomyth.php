@@ -198,6 +198,14 @@ function monomyth_modify_nav_menu_args( $args )
 		$args['fallback_cb']='wp_bootstrap_navwalker::fallback';
 		$args['menu_class'] =$args['menu_class'].' nav navbar-nav';
 	}
+	
+	if(isset($args['walker']) && $args['walker']=='default')
+	{
+		$args['walker'] = new Walker_Nav_Menu;
+		$args['fallback_cb']='';
+		$args['menu_class'] =$args['menu_class'].' nav navbar-nav';
+		$args['container_class'] =' navbar-collapse ';
+	}
 
 	return $args;
 }
