@@ -21,6 +21,7 @@ get_header(); ?>
 			</div><!-- .entry-content -->
 			<footer class="entry-footer"></footer>
 		</article><!-- #post-## -->
+		<?php endwhile; // end of the loop. ?>
 	</main><!-- /.main -->
 </div><!-- /.content -->
 </div><!--#container -->
