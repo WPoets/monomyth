@@ -10,7 +10,7 @@
 //	define('MM_PRODUCTION', false);
 	
 // clean ups taken from roots and bones theme framework
-require( 'updates.php' ); 
+//require( 'updates.php' ); 
 require( 'clean-up.php' ); 
 require( 'nice-search.php' ); 
 require( 'relative-urls.php' ); 
@@ -165,19 +165,6 @@ function monomyth_add_class_attachment_link( $html ) {
 }
 add_filter( 'wp_get_attachment_link', 'monomyth_add_class_attachment_link', 10, 1 );
 
-function monomyth_wp_title($title) {
-  if (is_feed()) {
-    return $title;
-  }
-
-	if(!is_front_page())
-	{
-		$title =$title.' | '.get_bloginfo('name');
-	}	
-
-  return $title;
-}
-add_filter('wp_title', 'monomyth_wp_title', 10);
 
 
 function monomyth_modify_nav_menu_args( $args )
