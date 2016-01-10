@@ -15,7 +15,6 @@ require( 'clean-up.php' );
 require( 'nice-search.php' ); 
 require( 'relative-urls.php' ); 
 require( 'admin-cleanup.php' ); 
-require( 'wp_bootstrap_navwalker.php' ); 
 
 
 // launching this stuff after theme setup
@@ -165,40 +164,6 @@ function monomyth_add_class_attachment_link( $html ) {
 }
 add_filter( 'wp_get_attachment_link', 'monomyth_add_class_attachment_link', 10, 1 );
 
-
-
-function monomyth_modify_nav_menu_args( $args )
-{
-
-	if(!isset($args['container']))
-	{
-		$args['container'] ='div';
-	}
-	if(!isset($args['container_class']) || empty($args['container_class']))
-	{
-		$args['container_class'] = 'collapse navbar-collapse';
-	}
-
-	if(!isset($args['walker']) || empty($args['walker']))
-	{
-		$args['walker'] = new wp_bootstrap_navwalker();
-		$args['fallback_cb']='wp_bootstrap_navwalker::fallback';
-		$args['menu_class'] =$args['menu_class'].' nav navbar-nav';
-	}
-	
-	if(isset($args['walker']) && $args['walker']=='default')
-	{
-		$args['walker'] = new Walker_Nav_Menu;
-		$args['fallback_cb']='';
-		$args['menu_class'] =$args['menu_class'].' nav navbar-nav';
-		$args['container_class'] =' navbar-collapse ';
-	}
-
-	return $args;
-}
-
-add_filter( 'wp_nav_menu_args', 'monomyth_modify_nav_menu_args' );
-
 //Moved CORE cpt here
 function monomyth_register_core_blocks(){
 if ( post_type_exists( 'aw2_core' ) ) 
@@ -258,3 +223,13 @@ function monomyth_register_admin_bar_menus_for_core(){
 }
 
 add_action( 'admin_bar_menu', 'monomyth_register_admin_bar_menus_for_core',2000 );
+
+add_filter( 'clean_url', function( $url )
+{
+    if(strpos( $url, 'bootstrap.min.js' )) {
+		// Must be a ', not "!
+		return "$url' defer='defer";
+	}
+	// not our file
+    return $url;
+}, 11, 1 );
