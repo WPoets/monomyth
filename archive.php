@@ -26,6 +26,7 @@ get_header(); ?>
 				awesome2_library::setparam('default_taxonomy',$tax->taxonomy);
 				awesome2_library::setparam('default_term_slug',$tax->slug);
 				awesome2_library::setparam('current_archive_name',$tax->name);
+				awesome2_library::setparam('default_term_id',$tax->term_id);
 				if(awesome2_library::get_post_from_slug($tax->taxonomy . '-archive','aw2_page',$ignore))
 					awesome2_library::get_post_content($tax->taxonomy . '-archive','aw2_page',$content);
 
@@ -35,7 +36,7 @@ get_header(); ?>
 				awesome2_library::setparam('default_taxonomy','category');
 				awesome2_library::setparam('default_term_slug',$cat->slug);
 				awesome2_library::setparam('current_archive_name',$cat->name);
-				
+				awesome2_library::setparam('default_term_id',$cat->term_id);
 				if(awesome2_library::get_post_from_slug($cat->slug . '-archive','aw2_page',$ignore))
 					awesome2_library::get_post_content($cat->slug . '-archive','aw2_page',$content);
 			}
@@ -51,7 +52,7 @@ get_header(); ?>
 			?>
 		</main><!-- /.main -->
 		<!-- <aside class="sidebar  col-sm-4 col-xs-12" role="complementary">
-			<?php get_sidebar(); ?>
+			<?php //get_sidebar(); ?>
 		</aside> --><!-- /.sidebar -->
 	</div><!-- /.content -->
 </div>
