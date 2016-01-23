@@ -6,8 +6,8 @@
 
 $aw2_header='page-landing-header' ;
 get_header(); ?>
-<div class="container-fluid">
-<div class="content row">
+<div class="container-fluid no-padding">
+<div class="content row no-gutters">
 	<main class="main  col-lg-12 col-md-12 col-sm-12 col-xs-12" role="main">
 		<?php while ( have_posts() ) : the_post(); awesome2_library::setparam('default_item',$post);?>
 
