@@ -15,14 +15,22 @@
 	<link rel="icon" href="<?php
 		global $monomyth_options;
 		if(isset($monomyth_options['opt-favicon'])) {
-			echo $monomyth_options['opt-favicon']['url'];
+			if(isset($monomyth_options['opt-favicon']['url'])){
+				echo $monomyth_options['opt-favicon']['url'];
+			} else {
+				echo wp_get_attachment_image_src($monomyth_options['opt-favicon'],'full');
+			}
 		}
 	 ?>">
 	<!--[if IE]>
 		<link rel="shortcut icon" href="<?php
 		global $monomyth_options;
 		if(isset($monomyth_options['opt-favicon'])) {
-			echo $monomyth_options['opt-favicon']['url'];
+			if(isset($monomyth_options['opt-favicon']['url'])){
+				echo $monomyth_options['opt-favicon']['url'];
+			} else {
+				echo wp_get_attachment_image_src($monomyth_options['opt-favicon'],'full');
+			}	
 		}
 	 ?>">
 	<![endif]-->
