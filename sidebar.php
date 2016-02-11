@@ -1,8 +1,8 @@
-				<div id="sidebar1" class="sidebar" role="complementary">
+				<div id="sidebar-primary" class="sidebar" role="complementary">
 
-					<?php if ( is_active_sidebar( 'sidebar1' ) ) : ?>
+					<?php if ( is_active_sidebar( 'sidebar-primary' ) ) : ?>
 
-						<?php dynamic_sidebar( 'sidebar1' ); ?>
+						<?php dynamic_sidebar( 'sidebar-primary' ); ?>
 
 					<?php else : ?>
 
@@ -13,7 +13,7 @@
 						?>
 
 						<div class="no-widgets">
-							<p><?php _e( 'This is a widget ready area. Add some and they will appear here.', 'bonestheme' );  ?></p>
+							<p><?php _e( 'This is a widget ready area. Add some in praimary sidebar and they will appear here.', 'bonestheme' );  ?></p>
 						</div>
 
 					<?php endif; ?>
