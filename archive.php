@@ -46,6 +46,21 @@ get_header(); ?>
 				if(awesome2_library::get_post_from_slug($cat->slug . '-archive','aw2_page',$ignore))
 					awesome2_library::get_post_content($cat->slug . '-archive','aw2_page',$content);
 			}
+			else if( is_author()){
+				//awesome2_library::setparam('default_tag',$wp_query->posts);
+				if(get_query_var('author_name')) :
+					$curauth = get_user_by('slug', get_query_var('author_name'));
+				else :
+					$curauth = get_userdata(get_query_var('author'));
+				endif;
+				var_dump($curauth); exit;
+				awesome2_library::setparam('current_author_id',$curauth->ID);
+				awesome2_library::setparam('current_author_slug',$curauth->user_login);
+				awesome2_library::setparam('current_author_name',$curauth->display_name);
+				awesome2_library::setparam('current_author',$curauth);
+				if(awesome2_library::get_post_from_slug('author-archive','aw2_page',$ignore))
+					awesome2_library::get_post_content( 'author-archive','aw2_page',$content);
+			}
 
 			
 			echo awesome2_library::parse_shortcode($content);
