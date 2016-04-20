@@ -85,7 +85,7 @@ function bones_rss_dashboard_widget() {
 
 // calling all custom dashboard widgets
 function bones_custom_dashboard_widgets() {
-	wp_add_dashboard_widget( 'bones_rss_dashboard_widget', __( 'Recently on Themble (Customize on admin.php)', 'bonestheme' ), 'bones_rss_dashboard_widget' );
+	wp_add_dashboard_widget( 'bones_rss_dashboard_widget', __( 'Recently on WPoets', 'bonestheme' ), 'bones_rss_dashboard_widget' );
 	/*
 	Be sure to drop any other created Dashboard Widgets
 	in this function and they will all load.
@@ -132,7 +132,7 @@ you like.
 
 // Custom Backend Footer
 function bones_custom_admin_footer() {
-	echo '<span id="footer-thankyou">Developed by <a href="http://www.wpoets.com" target="_blank">WPoets - Your WordPress Experts</a></span>. Built using <a href="http://wpoets.com/monomyth" target="_blank">MonoMyth</a> and <a href="http://awesomeui.com" target="_blank">Awesome UI</a>.';
+	echo '<span id="footer-thankyou">Developed by <a href="http://www.wpoets.com" target="_blank">WPoets - Your WordPress Experts</a></span>. Built using <a href="http://wpoets.com/monomyth" target="_blank">MonoMyth</a> and <a href="http://getawesomestudio.com" target="_blank">Awesome Studio</a>.';
 }
 
 // adding it to the admin area

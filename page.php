@@ -7,7 +7,7 @@ get_header(); ?>
 <div class="container-fluid no-padding">
 <div class="content row no-gutters">
 	<main class="main  col-lg-12 col-md-12 col-sm-12 col-xs-12" role="main">
-		<?php while ( have_posts() ) : the_post(); awesome2_library::setparam('default_item',$post);?>
+		<?php while ( have_posts() ) : the_post(); ?>
 
 		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 			<!-- <header class="entry-header">
@@ -25,13 +25,6 @@ get_header(); ?>
 			</div><!-- .entry-content -->
 			<footer class="entry-footer"></footer>
 		</article><!-- #post-## -->
-
-		<?php
-			// If comments are open or we have at least one comment, load up the comment template
-			if ( comments_open() || '0' != get_comments_number() ) :
-				comments_template();
-			endif;
-		?>
 
 		<?php endwhile; // end of the loop. ?>
 	</main><!-- /.main -->

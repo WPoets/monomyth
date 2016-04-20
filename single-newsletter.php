@@ -57,7 +57,7 @@
     <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F6F6F6">
         <tr>
             <td width="100%" valign="top" align="center">
-                <?php while ( have_posts() ) : the_post(); awesome2_library::setparam('default_item',$post);?>
+                <?php while ( have_posts() ) : the_post();?>
                 <?php the_content(); ?>
                 <?php endwhile; // end of the loop. ?>
             </td>

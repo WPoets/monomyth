@@ -54,8 +54,8 @@ if(isset($GLOBALS['aw2_header']))
 	$local_header=$GLOBALS['aw2_header'];
 else
 	$local_header='header';
-	
-$post_content=awesome2_library::get_active_content($local_header);
-echo awesome2_library::parse_shortcode($post_content);
 
- echo 'header logo:: ' . cmb2_get_option('awesome_settings','header_logo');
+aw2_library::get_post_from_slug($local_header,'aw2_core',$module_post);	
+echo aw2_library::parse_shortcode($module_post->post_content);
+
+// echo 'header logo:: ' . cmb2_get_option('awesome_settings','header_logo');

@@ -10,13 +10,10 @@ get_header(); ?>
 			
 			<?php
 			$content=null;
-			if(awesome2_library::get_post_from_slug( '404','aw2_page',$ignore)){
-				awesome2_library::get_post_content('404','aw2_page',$content);
-			}	
-			else{				
-				awesome2_library::get_post_content('404','aw2_core',$content);
+			if(!aw2_library::get_post_from_slug( '404','aw2_page',$module_post)){
+				aw2_library::get_post_from_slug( '404','aw2_core',$module_post)
 			}
-			echo awesome2_library::parse_shortcode($content);
+			echo aw2_library::parse_shortcode($module_post->post_content);
 	
 			?>
 			

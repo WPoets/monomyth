@@ -7,17 +7,17 @@ get_header(); ?>
 <div class="container-fluid no-padding">
 <div class="content row no-gutters">
 	<main class="main  col-lg-12 col-md-12 col-sm-12 col-xs-12" role="main">
-		<?php 	
-		awesome2_library::setparam('default_collection'. '_wpquery',$wp_query);
-		awesome2_library::setparam('default_collection',$wp_query->posts);
-		$content ='';
-		awesome2_library::get_post_content('archive','aw2_core',$content);
-		if(awesome2_library::get_post_from_slug('blog-list-page','aw2_page',$ignore))
-			awesome2_library::get_post_content('blog-list-page','aw2_page',$content);
+	<?php 	
 		
-		echo awesome2_library::parse_shortcode($content);
+		$module_post=null;
 		
-		?>
+		if(!aw2_library::get_post_from_slug( 'blog-page','aw2_page',$module_post)){
+			aw2_library::get_post_from_slug( 'archive','aw2_core',$module_post);
+		}	
+
+		echo aw2_library::parse_shortcode($module_post->post_content);
+		
+	?>
 	</main><!-- /.main -->
 </div><!-- /.content -->
 </div><!--#container -->

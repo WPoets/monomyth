@@ -6,11 +6,11 @@ else
 	$local_footer='footer';
 
 
-$footer_content=awesome2_library::get_active_content($local_footer);
-echo awesome2_library::parse_shortcode($footer_content);
+aw2_library::get_post_from_slug($local_footer,'aw2_core',$module_post);	
+echo aw2_library::parse_shortcode($module_post->post_content);
 
- wp_footer(); 
- if (current_user_can('develop_for_awesomeui')) {
+wp_footer(); 
+if (current_user_can('develop_for_awesomeui')) {
 	echo '<!-- ' . get_num_queries() . ' queries in ' . timer_stop(0,3) . ' seconds -->';
 }
 ?>
