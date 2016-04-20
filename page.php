@@ -4,8 +4,8 @@
  */
 
 get_header(); ?>
-<div class="container">
-<div class="content row">
+<div class="container-fluid no-padding">
+<div class="content row no-gutters">
 	<main class="main  col-lg-12 col-md-12 col-sm-12 col-xs-12" role="main">
 		<?php while ( have_posts() ) : the_post(); awesome2_library::setparam('default_item',$post);?>
 
@@ -23,9 +23,7 @@ get_header(); ?>
 					) );
 				?>
 			</div><!-- .entry-content -->
-			<footer class="entry-footer">
-			<?php //edit_post_link('Edit', '<span class="edit-link">', '</span>' ); ?>
-			</footer>
+			<footer class="entry-footer"></footer>
 		</article><!-- #post-## -->
 
 		<?php

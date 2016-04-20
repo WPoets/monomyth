@@ -3,28 +3,59 @@
 <!--[if (IE 7)&!(IEMobile)]><html <?php language_attributes(); ?> class="no-js lt-ie9 lt-ie8"><![endif]-->
 <!--[if (IE 8)&!(IEMobile)]><html <?php language_attributes(); ?> class="no-js lt-ie9"><![endif]-->
 <!--[if gt IE 8]><!--> <html <?php language_attributes(); ?> class="no-js"><!--<![endif]-->
-
+<?php 	global $post;awesome2_library::setparam('default_item',$post);?>
 <head>
 	<meta charset="utf-8">
 	<?php // Google Chrome Frame for IE ?>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
-
+	<title><?php wp_title(); ?></title>
 	<?php // icons & favicons (for more: http://www.jonathantneal.com/blog/understand-the-favicon/) ?>
 	<link rel="apple-touch-icon" href="<?php echo get_template_directory_uri(); ?>/assets/images/apple-icon-touch.png">
-	<link rel="icon" href="<?php global $monomyth_options; echo $monomyth_options['opt-favicon']['url']; ?>">
+	<link rel="icon" href="<?php
+		global $monomyth_options;
+		if(isset($monomyth_options['opt-favicon'])) {
+			if(isset($monomyth_options['opt-favicon']['url'])){
+				echo $monomyth_options['opt-favicon']['url'];
+			} else {
+				echo wp_get_attachment_image_src($monomyth_options['opt-favicon'],'full');
+			}
+		}
+	 ?>">
 	<!--[if IE]>
-		<link rel="shortcut icon" href="<?php global $monomyth_options; echo $monomyth_options['opt-favicon']['url']; ?>">
+		<link rel="shortcut icon" href="<?php
+		global $monomyth_options;
+		if(isset($monomyth_options['opt-favicon'])) {
+			if(isset($monomyth_options['opt-favicon']['url'])){
+				echo $monomyth_options['opt-favicon']['url'];
+			} else {
+				echo wp_get_attachment_image_src($monomyth_options['opt-favicon'],'full');
+			}	
+		}
+	 ?>">
 	<![endif]-->
 	<?php // or, set /favicon.ico for IE10 win ?>
 	<meta name="msapplication-TileColor" content="#f01d4f">
 	<meta name="msapplication-TileImage" content="<?php echo get_template_directory_uri(); ?>/assets/images/win8-tile-icon.png">
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
-	<?php wp_head(); ?>
+	<?php 
+	
+	$jsdef=null;
+	awesome2_library::get_post_content('global-js-definitions','aw2_core',$jsdef);
+	echo awesome2_library::parse_shortcode($jsdef);
+	
+	wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
 <div id="background_ovelay"></div>
 <?php
+if(isset($GLOBALS['aw2_header']))
+	$local_header=$GLOBALS['aw2_header'];
+else
+	$local_header='header';
+	
+$post_content=awesome2_library::get_active_content($local_header);
+echo awesome2_library::parse_shortcode($post_content);
 
-echo do_shortcode('[aw2_block slug="theme-header"]');
+ echo 'header logo:: ' . cmb2_get_option('awesome_settings','header_logo');

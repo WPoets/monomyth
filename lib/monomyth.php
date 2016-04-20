@@ -6,15 +6,16 @@
 */
 
 //enqueue required basic scripts and styles -- bootstrap css, js and app and js
-if ( !defined('MM_PRODUCTION') )
-	define('MM_PRODUCTION', false);
+//if ( !defined('MM_PRODUCTION') )
+//	define('MM_PRODUCTION', false);
 	
 // clean ups taken from roots and bones theme framework
+//require( 'updates.php' ); 
 require( 'clean-up.php' ); 
 require( 'nice-search.php' ); 
 require( 'relative-urls.php' ); 
 require( 'admin-cleanup.php' ); 
-require( 'wp_bootstrap_navwalker.php' ); 
+
 
 // launching this stuff after theme setup
 add_action( 'after_setup_theme','monomyth_theme_support' );
@@ -35,8 +36,12 @@ function monomyth_theme_support(){
 	// wp menus
 	add_theme_support( 'menus' );
 	
-	if(MM_PRODUCTION) 
-	{
+	global $monomyth_options;
+	$MM_PRODUCTION = false;
+	if(isset($monomyth_options['dev_mode']))
+		$MM_PRODUCTION = $monomyth_options['dev_mode'];
+	
+    if($MM_PRODUCTION) {
 		add_filter('acf/settings/show_admin','__return_false');
 	}
 	
@@ -73,31 +78,35 @@ add_action('widgets_init', 'monomyth_widgets_init');
 function monomyth_scripts() {
   global $wp_styles;
   global $wp_scripts;
-  
-//  wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/less/bootstrap.less', false);
-if(MM_PRODUCTION) 
-{
-  wp_enqueue_style('monomyth_app', get_template_directory_uri() . '/assets/css-cache/monomyth_app.css', false, null);
-}
-else
-{
-  wp_enqueue_style('monomyth_app', get_template_directory_uri() . '/assets/app.less', false, null);
-} 
- wp_enqueue_style('monomyth_ie', get_template_directory_uri() . '/assets/ie.css', false, null);
- $wp_styles->add_data( 'monomyth_ie', 'conditional', 'lt IE 10' ); // add conditional wrapper around ie stylesheet
+  global $monomyth_options;
+//wp_enqueue_style('fontawesome', 'http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css', false, null); 
+
+	$MM_PRODUCTION = false;
+	if(isset($monomyth_options['dev_mode']))
+		$MM_PRODUCTION = $monomyth_options['dev_mode'];
+
+	if($MM_PRODUCTION) {
+	  wp_enqueue_style('monomyth_app', get_template_directory_uri() . '/assets/css-cache/monomyth_app.css', false, null);
+	}
+	else
+	{
+	  wp_enqueue_style('monomyth_app', get_template_directory_uri() . '/assets/app.less', false, null);
+	} 
+	 wp_enqueue_style('monomyth_ie', get_template_directory_uri() . '/assets/ie.css', false, null);
+	 $wp_styles->add_data( 'monomyth_ie', 'conditional', 'lt IE 10' ); // add conditional wrapper around ie stylesheet
   // jQuery is loaded using the same method from HTML5 Boilerplate:
   // Grab Google CDN's latest jQuery with a protocol relative URL; fallback to local if offline
   // It's kept in the header instead of footer to avoid conflicts with plugins.
   if (!is_admin() && current_theme_supports('jquery-cdn')) {
     wp_deregister_script('jquery');
-    wp_register_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js', array(), null, false);
+    wp_register_script('jquery', '//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js', array(), null, false);
   }
 
   if (is_single() && comments_open() && get_option('thread_comments')) {
     wp_enqueue_script('comment-reply');
   }
 
-  wp_register_script('bootstrap_js', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array(), '0fc6af96786d8f267c8686338a34cd38', true);
+//  wp_register_script('bootstrap_js', '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js', array(), null, false);
 /* We need to run into issue where I can justify the use of html5_shiv as well as respondjs	 */
   //wp_register_script('html5_shiv', 'https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js', array(), '0fc6af96786d8f267c8686338a34cd38', true);
   //wp_register_script('respondjs', 'https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js', array(), '0fc6af96786d8f267c8686338a34cd38', true);
@@ -147,14 +156,6 @@ function monomyth_less_url(){
 }
 add_filter('wp_less_cache_url','monomyth_less_url');
 
-// Remove height/width attributes on images so they can be responsive
-add_filter( 'post_thumbnail_html', 'monomyth_remove_thumbnail_dimensions', 10 );
-add_filter( 'image_send_to_editor', 'monomyth_remove_thumbnail_dimensions', 10 );
-
-function monomyth_remove_thumbnail_dimensions( $html ) {
-    $html = preg_replace( '/(width|height)=\"\d*\"\s/', "", $html );
-    return $html;
-}
 // Add thumbnail class to thumbnail links
 function monomyth_add_class_attachment_link( $html ) {
     $postid = get_the_ID();
@@ -163,47 +164,72 @@ function monomyth_add_class_attachment_link( $html ) {
 }
 add_filter( 'wp_get_attachment_link', 'monomyth_add_class_attachment_link', 10, 1 );
 
-function monomyth_wp_title($title) {
-  if (is_feed()) {
-    return $title;
-  }
+//Moved CORE cpt here
+function monomyth_register_core_blocks(){
+if ( post_type_exists( 'aw2_core' ) ) 
+	return;
 
-	if(!is_front_page())
-	{
-		$title =$title.' | '.get_bloginfo('name');
-	}	
+register_post_type('aw2_core', array(
+	'label' => 'Awesome Core',
+	'description' => '',
+	'public' => true,
+	'exclude_from_search'=>true,
+	'publicly_queryable'=>false,
+	'show_in_nav_menus'=>false,
+	'show_ui' => true,
+	'show_in_menu' => false,
+	'capability_type' => 'post',
+	'map_meta_cap' => true,
+	'hierarchical' => false,
+	'menu_icon'   => 'dashicons-archive',
+	'menu_position'   => 31,
+	'rewrite' => array('slug' => 'aw2_core', 'with_front' => true),
+	'query_var' => true,
+	'supports' => array('title','editor','excerpt','revisions'),
+	'labels' => array (
+	  'name' => 'Awesome Core',
+	  'singular_name' => 'Awesome Core',
+	  'menu_name' => 'Awesome Core',
+	  'add_new' => 'Add Awesome Core',
+	  'add_new_item' => 'Add New Awesome Core',
+	  'edit' => 'Edit',
+	  'edit_item' => 'Edit Awesome Core',
+	  'new_item' => 'New Awesome Core',
+	  'view' => 'View Awesome Core',
+	  'view_item' => 'View Awesome Core',
+	  'search_items' => 'Search Awesome Core',
+	  'not_found' => 'No Awesome Core Found',
+	  'not_found_in_trash' => 'No Awesome Core Found in Trash',
+	  'parent' => 'Parent Awesome Core',
+	)
+	) ); 
+}	
+add_action('init', 'monomyth_register_core_blocks');
 
-  return $title;
+function monomyth_register_menus_for_core(){
+	   add_submenu_page( 'awesome-dev', 'Awesome Core - Awesome Studio Framework', 'Core', 'develop_for_awesomeui', 'edit.php?post_type=aw2_core' );
 }
-add_filter('wp_title', 'monomyth_wp_title', 10);
-//for backward compatibility for time being will be removed after wordpress 4.2 release.
-if ( ! function_exists( '_wp_render_title_tag' ) ) :
-	function theme_slug_render_title() {
-		echo '<title>' . wp_title( '|', false, 'right' ) . "</title>\n";
-	}
-	add_action( 'wp_head', 'theme_slug_render_title' );
-endif;
+add_action( 'admin_menu', 'monomyth_register_menus_for_core' );
 
-function monomyth_modify_nav_menu_args( $args )
+function monomyth_register_admin_bar_menus_for_core(){
+  global $wp_admin_bar;
+  
+  if(!current_user_can( 'develop_for_awesomeui' ))
+	return;
+
+	$menu_id = 'asf';
+	
+	$wp_admin_bar->add_menu(array('parent' => $menu_id, 'title' => 'Core', 'id' => 'asf-core', 'href' =>get_admin_url(null,'edit.php?post_type=aw2_core'), 'meta' => array('target' => '_blank')));
+}
+
+add_action( 'admin_bar_menu', 'monomyth_register_admin_bar_menus_for_core',2000 );
+
+add_filter( 'clean_url', function( $url )
 {
-
-	if(!isset($args['container']))
-	{
-		$args['container'] ='div';
+    if(strpos( $url, 'bootstrap.min.js' )) {
+		// Must be a ', not "!
+		return "$url' defer='defer";
 	}
-	if(!isset($args['container_class']) || empty($args['container_class']))
-	{
-		$args['container_class'] = 'collapse navbar-collapse';
-	}
-
-	if(!isset($args['walker']) || empty($args['walker']))
-	{
-		$args['walker'] = new wp_bootstrap_navwalker();
-		$args['fallback_cb']='wp_bootstrap_navwalker::fallback';
-		$args['menu_class'] =$args['menu_class'].' nav navbar-nav';
-	}
-
-	return $args;
-}
-
-add_filter( 'wp_nav_menu_args', 'monomyth_modify_nav_menu_args' );
+	// not our file
+    return $url;
+}, 11, 1 );

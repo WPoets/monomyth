@@ -4,8 +4,8 @@
  */
 
 get_header(); ?>
-<div class="container">
-<div class="content row">
+<div class="container-fluid no-padding">
+<div class="content row no-gutters">
 
 <?php if (!have_posts()) : ?>
   <div class="alert alert-warning">
