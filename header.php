@@ -3,7 +3,6 @@
 <!--[if (IE 7)&!(IEMobile)]><html <?php language_attributes(); ?> class="no-js lt-ie9 lt-ie8"><![endif]-->
 <!--[if (IE 8)&!(IEMobile)]><html <?php language_attributes(); ?> class="no-js lt-ie9"><![endif]-->
 <!--[if gt IE 8]><!--> <html <?php language_attributes(); ?> class="no-js"><!--<![endif]-->
-<?php 	global $post;awesome2_library::setparam('default_item',$post);?>
 <head>
 	<meta charset="utf-8">
 	<?php // Google Chrome Frame for IE ?>
