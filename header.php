@@ -40,9 +40,10 @@
 	<?php 
 	
 	$jsdef=null;
-	awesome2_library::get_post_content('global-js-definitions','aw2_core',$jsdef);
-	echo awesome2_library::parse_shortcode($jsdef);
-	
+		
+	aw2_library::get_post_from_slug('global-definitions','aw2_core',$jsdef);	
+	echo aw2_library::parse_shortcode($jsdef->post_content);
+
 	wp_head(); ?>
 </head>
 
