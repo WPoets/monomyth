@@ -11,7 +11,7 @@ get_header(); ?>
 			<?php
 			$content=null;
 			if(!aw2_library::get_post_from_slug( '404','aw2_page',$module_post)){
-				aw2_library::get_post_from_slug( '404','aw2_core',$module_post)
+				aw2_library::get_post_from_slug( '404','aw2_core',$module_post);
 			}
 			echo aw2_library::parse_shortcode($module_post->post_content);
 	
