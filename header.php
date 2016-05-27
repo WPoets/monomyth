@@ -11,27 +11,22 @@
 	<title><?php wp_title(); ?></title>
 	<?php // icons & favicons (for more: http://www.jonathantneal.com/blog/understand-the-favicon/) ?>
 	<link rel="apple-touch-icon" href="<?php echo get_template_directory_uri(); ?>/assets/images/apple-icon-touch.png">
+	<?php
+	if(aw2_library::get('site_settings.opt-favicon.exists')){?>
 	<link rel="icon" href="<?php
-		global $monomyth_options;
-		if(isset($monomyth_options['opt-favicon'])) {
-			if(isset($monomyth_options['opt-favicon']['url'])){
-				echo $monomyth_options['opt-favicon']['url'];
-			} else {
-				echo wp_get_attachment_image_src($monomyth_options['opt-favicon'],'full');
-			}
-		}
-	 ?>">
+		echo aw2_library::get('site_settings.opt-favicon');
+	 ?>"> 
+	<?php
+	}
+	if(aw2_library::get('site_settings.opt-favicon.exists')){
+		?>
 	<!--[if IE]>
 		<link rel="shortcut icon" href="<?php
-		global $monomyth_options;
-		if(isset($monomyth_options['opt-favicon'])) {
-			if(isset($monomyth_options['opt-favicon']['url'])){
-				echo $monomyth_options['opt-favicon']['url'];
-			} else {
-				echo wp_get_attachment_image_src($monomyth_options['opt-favicon'],'full');
-			}	
-		}
-	 ?>">
+		echo aw2_library::get('site_settings.opt-favicon');
+	 ?>">	
+	<?php 	
+	}
+	?>
 	<![endif]-->
 	<?php // or, set /favicon.ico for IE10 win ?>
 	<meta name="msapplication-TileColor" content="#f01d4f">
