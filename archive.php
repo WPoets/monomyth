@@ -10,15 +10,19 @@ get_header(); ?>
 			<?php 
 			$module_post ='';
 			
-			awesome2_library::get_post_content('archive','aw2_core',$content);
+			aw2_library::get_post_from_slug('archive','aw2_core',$content);
 			
-			
-			if(is_post_type_archive( ))
+			if(aw2_library::get('app.pages.archive.exists')){
+	
+				
+				echo aw2_library::parse_shortcode(aw2_library::get('app.pages.archive.post_content'));
+			}
+			else if(is_post_type_archive( ))
 			{
 				$post_type = get_query_var('post_type');
 				aw2_library::set('current_archive_name',$post_type);
 				
-				if(!aw2_library::get_post_from_slug( $post_type . '-archive','aw2_page',$module_post))
+				if(!aw2_library::get_post_from_slug( $post_type . '-archive','aw2_core',$module_post))
 					aw2_library::get_post_from_slug( 'archive','aw2_core',$module_post);
 			}
 			else if(is_tax())
@@ -29,7 +33,7 @@ get_header(); ?>
 				aw2_library::set('current_archive_name',$tax->name);
 				aw2_library::set('default_term_id',$tax->term_id);
 				
-				if(!aw2_library::get_post_from_slug( $tax->taxonomy . '-archive','aw2_page',$module_post))
+				if(!aw2_library::get_post_from_slug( $tax->taxonomy . '-archive','aw2_core',$module_post))
 					aw2_library::get_post_from_slug( 'archive','aw2_core',$module_post);
 			}
 			else if(is_category()){
@@ -39,14 +43,14 @@ get_header(); ?>
 				aw2_library::set('current_archive_name',$cat->name);
 				aw2_library::set('default_term_id',$cat->term_id);
 				
-				if(!aw2_library::get_post_from_slug( $cat->slug . '-archive','aw2_page',$module_post))
+				if(!aw2_library::get_post_from_slug( $cat->slug . '-archive','aw2_core',$module_post))
 					aw2_library::get_post_from_slug( 'archive','aw2_core',$module_post);
 			}
 			else if( is_tag()){
 				//awesome2_library::setparam('default_tag',$wp_query->posts);
 				aw2_library::set('current_archive_name',$cat->name);
-				if(awesome2_library::get_post_from_slug($cat->slug . '-archive','aw2_page',$ignore))
-					awesome2_library::get_post_content($cat->slug . '-archive','aw2_page',$content);
+				if(awesome2_library::get_post_from_slug($cat->slug . '-archive','aw2_core',$ignore))
+					awesome2_library::get_post_content($cat->slug . '-archive','aw2_core',$content);
 			}
 			else if( is_author()){
 				//awesome2_library::setparam('default_tag',$wp_query->posts);

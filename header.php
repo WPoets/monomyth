@@ -9,6 +9,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
 	<title><?php wp_title(); ?></title>
+	<link rel='dns-prefetch' href='cdn.getawesomestudio.com'>
 	<?php // icons & favicons (for more: http://www.jonathantneal.com/blog/understand-the-favicon/) ?>
 	<link rel="apple-touch-icon" href="<?php echo get_template_directory_uri(); ?>/assets/images/apple-icon-touch.png">
 	<?php
@@ -52,5 +53,3 @@ else
 
 aw2_library::get_post_from_slug($local_header,'aw2_core',$module_post);	
 echo aw2_library::parse_shortcode($module_post->post_content);
-
-// echo 'header logo:: ' . cmb2_get_option('awesome_settings','header_logo');
