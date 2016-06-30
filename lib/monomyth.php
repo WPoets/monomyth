@@ -77,43 +77,30 @@ function monomyth_widgets_init() {
 add_action('widgets_init', 'monomyth_widgets_init');
 
 function monomyth_scripts() {
-  global $wp_styles;
-  global $wp_scripts;
-  global $monomyth_options;
+	global $wp_styles;
+	global $wp_scripts;
+	global $monomyth_options;
 
-
-//	  wp_enqueue_style('monomyth_app', get_template_directory_uri() . '/assets/css-cache/monomyth_app.css', false, null);
-	
-	 wp_enqueue_style('monomyth_app', get_template_directory_uri() . '/assets/app.less', false, null);
-	
-	 wp_enqueue_style('monomyth_ie', get_template_directory_uri() . '/assets/ie.css', false, null);
-	 $wp_styles->add_data( 'monomyth_ie', 'conditional', 'lt IE 10' ); // add conditional wrapper around ie stylesheet
+    wp_enqueue_style('monomyth_app', get_template_directory_uri() . '/assets/app.less', false, null);	
+	wp_enqueue_style('monomyth_ie', get_template_directory_uri() . '/assets/ie.css', false, null);
+	$wp_styles->add_data( 'monomyth_ie', 'conditional', 'lt IE 10' ); // add conditional wrapper around ie stylesheet
+	 
   // jQuery is loaded using the same method from HTML5 Boilerplate:
   // Grab Google CDN's latest jQuery with a protocol relative URL; fallback to local if offline
   // It's kept in the header instead of footer to avoid conflicts with plugins.
-  if (!is_admin() && current_theme_supports('jquery-cdn')) {
-    wp_deregister_script('jquery');
-    wp_register_script('jquery', '//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js', array(), null, false);
-  }
+	if (!is_admin() && current_theme_supports('jquery-cdn')) {
+		wp_deregister_script('jquery');
+		wp_register_script('jquery', '//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js', array(), null, false);
+	}
 
-  if (is_single() && comments_open() && get_option('thread_comments')) {
-    wp_enqueue_script('comment-reply');
-  }
+	if (is_single() && comments_open() && get_option('thread_comments')) {
+		wp_enqueue_script('comment-reply');
+	}
 
-  wp_enqueue_script('jquery');
-  
-  
+	wp_enqueue_script('jquery');
+
 }
 add_action('wp_enqueue_scripts', 'monomyth_scripts', 100);
-
-
-
-
-function add_filters($tags, $function) {
-  foreach($tags as $tag) {
-    add_filter($tag, $function);
-  }
-}
 
 //--- theme activation ---
 function monomyth_theme_activation_action(){

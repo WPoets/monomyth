@@ -46,3 +46,9 @@ if (soil_enable_root_relative_urls()) {
 
   add_filters($root_rel_filters, 'soil_root_relative_url');
 }
+
+function add_filters($tags, $function) {
+  foreach($tags as $tag) {
+    add_filter($tag, $function);
+  }
+}
