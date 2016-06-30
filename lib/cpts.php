@@ -86,7 +86,7 @@ function monomyth_register_admin_bar_menus_for_core(){
 	$menu_id = 'asf';
 	$wp_admin_bar->add_menu(array('id' => $menu_id, 'title' => 'Awesome Dev', 'href' => get_admin_url(null,'admin.php?page=awesome-dev'),'meta' => array('target' => '_blank')));
 	
-	$wp_admin_bar->add_menu(array('parent' => $menu_id, 'title' => 'Pages', 'id' => 'asf-pages', 'href' => get_admin_url(null,'edit.php?post_type=aw2_page'), 'meta' => array('target' => '_blank')));
+	//$wp_admin_bar->add_menu(array('parent' => $menu_id, 'title' => 'Pages', 'id' => 'asf-pages', 'href' => get_admin_url(null,'edit.php?post_type=aw2_page'), 'meta' => array('target' => '_blank')));
 	$wp_admin_bar->add_menu(array('parent' => $menu_id, 'title' => 'Core', 'id' => 'asf-core', 'href' =>get_admin_url(null,'edit.php?post_type=aw2_core'), 'meta' => array('target' => '_blank')));
 }
 

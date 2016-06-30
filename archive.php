@@ -6,7 +6,7 @@
 get_header(); ?>
 <div class="container-fluid no-padding">
 	<div class="content row no-gutters">
-		<main class="main col-md-12 col-xs-12" role="main">
+		<main class="main col-md-12 col-xs-12">
 			<?php 
 			$module_post ='';
 			
@@ -49,8 +49,8 @@ get_header(); ?>
 			else if( is_tag()){
 				//awesome2_library::setparam('default_tag',$wp_query->posts);
 				aw2_library::set('current_archive_name',$cat->name);
-				if(awesome2_library::get_post_from_slug($cat->slug . '-archive','aw2_core',$ignore))
-					awesome2_library::get_post_content($cat->slug . '-archive','aw2_core',$content);
+				if(!aw2_library::get_post_from_slug( $cat->slug . '-archive','aw2_core',$module_post))
+					aw2_library::get_post_from_slug( 'archive','aw2_core',$module_post);
 			}
 			else if( is_author()){
 				//awesome2_library::setparam('default_tag',$wp_query->posts);
