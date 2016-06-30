@@ -11,7 +11,7 @@ get_header(); ?>
 		
 		$module_post=null;
 		
-		if(!aw2_library::get_post_from_slug( 'blog-page','aw2_page',$module_post)){
+		if(!aw2_library::get_post_from_slug( 'blog-page','aw2_core',$module_post)){
 			aw2_library::get_post_from_slug( 'archive','aw2_core',$module_post);
 		}	
 

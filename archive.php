@@ -65,7 +65,7 @@ get_header(); ?>
 				aw2_library::set('current_author_name',$curauth->display_name);
 				aw2_library::set('current_author',$curauth);
 				
-				if(!aw2_library::get_post_from_slug( 'author-archive','aw2_page',$module_post))
+				if(!aw2_library::get_post_from_slug( 'author-archive','aw2_core',$module_post))
 					aw2_library::get_post_from_slug( 'archive','aw2_core',$module_post);
 				
 			}

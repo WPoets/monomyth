@@ -12,7 +12,7 @@ get_header(); ?>
 			$post_type=get_post_type( $post );
 			$module_post=null;
 			
-			if(!aw2_library::get_post_from_slug( $post_type . '-single','aw2_page',$module_post)){
+			if(!aw2_library::get_post_from_slug( $post_type . '-single','aw2_core',$module_post)){
 				aw2_library::get_post_from_slug( 'single','aw2_core',$module_post);
 			}	
 			
