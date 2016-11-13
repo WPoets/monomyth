@@ -10,12 +10,14 @@ get_header(); ?>
 			<?php 
 			$module_post ='';
 			
-			aw2_library::get_post_from_slug('archive','aw2_core',$content);
+			//aw2_library::get_post_from_slug('archive','aw2_core',$content);
 			
-			if(aw2_library::get('app.pages.archive.exists')){
-	
+			if(aw2_library::get('app.action')=='archive'){
 				
-				echo aw2_library::parse_shortcode(aw2_library::get('app.pages.archive.post_content'));
+				$post_type= aw2_library::get('app.default_pages');
+				aw2_library::get_post_from_slug('archive',$post_type,$post);
+				
+				echo aw2_library::parse_shortcode($post->post_content); 
 			}
 			else if(is_post_type_archive( ))
 			{
