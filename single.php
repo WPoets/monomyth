@@ -4,7 +4,7 @@
  */
 
 get_header(); ?>
-<div class="container-fluid no-padding">
+<div class="container-fluid">
 	<div class="content row no-gutters">
 		<main class="main col-sm-12 col-xs-12">
 		<?php

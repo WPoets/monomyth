@@ -15,7 +15,8 @@ require( 'clean-up.php' );
 require( 'nice-search.php' ); 
 require( 'relative-urls.php' ); 
 require( 'admin-cleanup.php' ); 
-require( 'class-tgm-plugin-activation.php' ); 
+//require( 'class-tgm-plugin-activation.php' ); 
+require( 'security.php' ); 
 
 
 // launching this stuff after theme setup
